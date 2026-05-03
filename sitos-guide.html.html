@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>النموذج الذهبي — دليل المستخدم</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold:#B8860B;--gold-l:#FFF8E7;--gold-m:#D4A843;
+  --blue:#1F3864;--blue-m:#2E5090;--blue-l:#D6E4F0;
+  --white:#FFF;--bg:#F4F6FA;--card:#FFF;
+  --text:#1A1A1A;--sec:#555;--border:#DDD;
+  --green:#0F6E56;--green-l:#E1F5EE;
+  --red:#922B21;--red-l:#FDECEA;
+  --c1:#1F3864;--c1l:#EBF2FB;
+  --c2:#0F6E56;--c2l:#E1F5EE;
+  --c3:#7A5000;--c3l:#FFF3CD;
+  --c4:#922B21;--c4l:#FDECEA;
+  --c5:#3C3489;--c5l:#EEEDFE;
+  --c6:#5D3A1A;--c6l:#F5EBE0;
+}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);direction:rtl;color:var(--text);}
+.page{display:none;} .page.active{display:block;}
+#page-home.active{display:flex;flex-direction:column;}
+.topbar{background:var(--blue);border-bottom:3px solid var(--gold);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.tl{color:var(--gold);font-size:16px;font-weight:700;} .ts{color:var(--blue-l);font-size:11px;margin-top:2px;}
+.back-btn{background:var(--gold);color:var(--blue);border:none;padding:7px 16px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:none;}
+.back-btn.show{display:block;}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px;}
+.btn-gold{background:var(--gold);color:var(--blue);border:none;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-block;}
+.btn-gold:hover{background:var(--gold-m);color:var(--white);}
+.btn-blue{background:var(--blue);color:var(--white);border:none;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:inline-block;}
+.btn-blue:hover{background:var(--blue-m);}
+.btn-ghost{background:var(--card);color:var(--blue);border:2px solid var(--border);padding:8px 18px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.nav-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;padding-top:16px;border-top:1px solid var(--border);}
+/* INTRO */
+.intro-slide{display:none;}
+.intro-slide.active{display:flex;flex-direction:column;flex:1;}
+.slide-light{background:var(--bg);flex:1;display:flex;flex-direction:column;justify-content:center;padding:30px 20px 90px;}
+.slide-dark{background:var(--blue);flex:1;display:flex;flex-direction:column;justify-content:center;padding:30px 20px 90px;}
+.intro-slide .wrap{flex:1;}
+.intro-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--white);border-top:2px solid var(--border);width:100%;}
+.intro-nav.ln{background:var(--white);border-top:1px solid var(--border);}
+.intro-nav.dn{background:rgba(15,30,60,0.97);border-top:1px solid rgba(255,255,255,0.1);}
+.inav-btn{border:none;padding:12px 28px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;min-width:100px;}
+.inav-prev{background:rgba(31,56,100,0.12);color:var(--blue);}
+.inav-prev.dk{background:rgba(255,255,255,0.12);color:var(--white);}
+.inav-prev:disabled{opacity:.3;cursor:default;}
+.inav-next{background:var(--gold);color:var(--blue);}
+.dots{display:flex;gap:7px;align-items:center;}
+.dot{width:8px;height:8px;border-radius:50%;cursor:pointer;transition:all .2s;}
+.dot.lt{background:var(--border);}
+.dot.dk{background:rgba(255,255,255,0.3);}
+.dot.active{background:var(--gold);transform:scale(1.3);}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.pain-card{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:16px;}
+.pain-icon{font-size:26px;margin-bottom:8px;} .pain-t{font-size:14px;font-weight:700;color:var(--blue);margin-bottom:4px;} .pain-d{font-size:12px;color:var(--sec);line-height:1.6;}
+.root-box{background:var(--blue);color:var(--white);text-align:center;padding:14px;border-radius:10px;font-size:14px;line-height:1.6;}
+.root-box strong{color:var(--gold);}
+.big-q{background:rgba(255,255,255,0.09);border-right:4px solid var(--gold);border-radius:0 12px 12px 0;padding:16px 20px;font-size:15px;color:var(--white);line-height:1.8;text-align:right;margin-bottom:20px;}
+.pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.pillar{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:16px 10px;text-align:center;}
+.pi{font-size:28px;margin-bottom:8px;} .pt{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:4px;} .ps{font-size:11px;color:var(--blue-l);line-height:1.5;}
+.rel-box{background:rgba(255,255,255,0.07);border-radius:14px;padding:18px;margin-bottom:16px;}
+.rel-item{background:rgba(255,255,255,0.09);border-radius:10px;padding:12px 16px;margin-bottom:6px;border-right:4px solid var(--gold);}
+.rel-item.r2{border-right-color:#9FE1CB;} .rel-item.r3{border-right-color:#AFA9EC;}
+.ri-tag{font-size:10px;color:var(--gold-m);font-weight:700;margin-bottom:3px;} .ri-t{font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;} .ri-d{font-size:12px;color:var(--blue-l);line-height:1.6;}
+.rel-arrow{text-align:center;color:var(--gold-m);font-size:20px;margin:2px 0;}
+.flow-item{display:flex;align-items:flex-start;gap:14px;padding:12px 16px;background:rgba(255,255,255,0.07);border-radius:12px;margin-bottom:8px;border:1px solid rgba(255,255,255,0.1);}
+.flow-item.gb{border-color:var(--gold);border-width:1.5px;}
+.fn{width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--blue);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fn.soft{background:rgba(255,255,255,0.15);color:var(--gold);}
+.fb-t{font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;} .fb-d{font-size:12px;color:var(--blue-l);line-height:1.6;}
+.cmp-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.cmp-bad{background:var(--red-l);border:1.5px solid var(--red);border-radius:10px;padding:12px 14px;}
+.cmp-good{background:var(--green-l);border:1.5px solid var(--green);border-radius:10px;padding:12px 14px;}
+.cmp-lbl{font-size:11px;font-weight:700;margin-bottom:4px;} .cmp-txt{font-size:13px;line-height:1.5;}
+.role-row{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;margin-bottom:8px;}
+.rbadge{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+.rb1{background:#EBF2FB;color:#0C447C;border:1px solid #185FA5;} .rb2{background:#E1F5EE;color:#085041;border:1px solid #0F6E56;} .rb3{background:#FFF3CD;color:#7A5000;border:1px solid #D4A843;}
+.role-text{font-size:13px;color:var(--text);line-height:1.7;} .role-text span{color:var(--sec);}
+.ins-box{background:var(--blue);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--blue-l);text-align:center;line-height:1.7;}
+.ins-box strong{color:var(--gold);}
+.cert-row-mini{display:flex;align-items:center;gap:10px;border-radius:10px;padding:10px 14px;margin-bottom:6px;border:1.5px solid transparent;}
+.crm-badge{font-size:20px;flex-shrink:0;} .crm-pct{font-size:14px;font-weight:700;min-width:80px;} .crm-t{font-size:13px;font-weight:700;} .crm-en{font-size:10px;opacity:.8;}
+/* MANUAL */
+.manual-hero{background:var(--blue);border-radius:14px;padding:18px;text-align:center;margin-bottom:24px;border-bottom:3px solid var(--gold);}
+.sec-title{font-size:12px;font-weight:700;color:var(--sec);margin-bottom:12px;padding-right:8px;border-right:3px solid var(--gold);}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.menu-card{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:all .2s;text-align:right;}
+.menu-card:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(184,134,11,.15);transform:translateY(-2px);}
+.mc-icon{font-size:26px;margin-bottom:8px;} .mc-title{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:4px;} .mc-desc{font-size:12px;color:var(--sec);line-height:1.6;}
+.mc-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 10px;border-radius:20px;margin-top:8px;background:var(--gold-l);color:var(--gold);border:1px solid var(--gold-m);}
+.axes-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.axis-btn{border-radius:12px;padding:14px 10px;cursor:pointer;transition:all .2s;text-align:center;border:2px solid transparent;}
+.axis-btn:hover{transform:translateY(-2px);filter:brightness(1.05);}
+.ax-icon{font-size:22px;margin-bottom:6px;} .ax-num{font-size:10px;font-weight:600;opacity:.8;margin-bottom:2px;} .ax-title{font-size:13px;font-weight:700;}
+/* INNER */
+.breadcrumb{font-size:12px;color:var(--sec);margin-bottom:16px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.breadcrumb span{color:var(--gold);cursor:pointer;font-weight:600;}
+.page-hero{border-radius:14px;padding:20px;margin-bottom:18px;border-right:5px solid var(--gold);}
+.ph-tag{font-size:11px;color:var(--gold);font-weight:700;margin-bottom:6px;} .page-hero h2{font-size:22px;font-weight:700;color:var(--white);margin-bottom:6px;} .page-hero p{font-size:13px;color:var(--blue-l);line-height:1.7;}
+.hl{background:var(--gold-l);border:1.5px solid var(--gold-m);border-radius:10px;padding:14px 16px;font-size:14px;color:var(--blue);font-weight:600;line-height:1.7;text-align:center;margin-bottom:16px;}
+.card{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px;}
+.card-title{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:10px;}
+.card p{font-size:13px;color:var(--sec);line-height:1.8;margin-bottom:8px;} .card p:last-child{margin-bottom:0;}
+.step-card{background:var(--card);border-radius:12px;margin-bottom:16px;overflow:hidden;border:1.5px solid var(--border);}
+.step-card-head{padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.sc-num{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.2);color:var(--white);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sc-label{font-size:15px;font-weight:700;color:var(--white);}
+.step-card-body{padding:14px 16px;} .step-card-body p{font-size:13px;color:var(--sec);line-height:1.8;margin-bottom:8px;} .step-card-body p:last-child{margin-bottom:0;}
+.kpi-box{background:var(--blue);border-radius:10px;padding:14px 16px;margin-bottom:14px;}
+.kpi-label{font-size:11px;color:var(--gold);font-weight:700;margin-bottom:8px;}
+.kpi-items{display:flex;flex-direction:column;gap:7px;}
+.kpi-item{display:flex;align-items:center;gap:8px;}
+.ki-name{font-size:12px;color:var(--blue-l);flex:1;} .ki-val{font-size:12px;color:var(--white);font-weight:700;}
+.warn{background:var(--red-l);border:1.5px solid var(--red);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--red);line-height:1.6;margin-bottom:14px;}
+.warn strong{display:block;margin-bottom:4px;}
+.tip{background:var(--green-l);border:1.5px solid var(--green);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--green);line-height:1.6;margin-bottom:14px;}
+.tip strong{display:block;margin-bottom:4px;}
+/* PROGRESS INDICATORS */
+.axis-overall{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-m) 100%);border-radius:16px;padding:18px 20px;margin-bottom:20px;display:flex;align-items:center;gap:16px;position:relative;overflow:hidden;}
+.axis-overall::before{content:'';position:absolute;top:-20px;left:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.05);}
+.ao-ring-wrap{flex-shrink:0;}
+.ao-ring{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;}
+.ao-ring svg{position:absolute;top:0;left:0;transform:rotate(-90deg);}
+.ao-ring .ao-inner{text-align:center;z-index:1;}
+.ao-pct{font-size:18px;font-weight:700;color:var(--gold);line-height:1;}
+.ao-lbl{font-size:9px;color:var(--blue-l);margin-top:2px;}
+.ao-info{flex:1;}
+.ao-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.ao-sub{font-size:12px;color:var(--blue-l);line-height:1.5;}
+.steps-progress{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.sp-item{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .2s;}
+.sp-item:hover{border-color:var(--gold);transform:translateY(-2px);}
+.sp-ring{width:52px;height:52px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;position:relative;}
+.sp-ring svg{position:absolute;top:0;left:0;transform:rotate(-90deg);}
+.sp-pct{font-size:14px;font-weight:700;z-index:1;line-height:1;}
+.sp-name{font-size:11px;font-weight:700;color:var(--blue);margin-bottom:4px;}
+.sp-tap{font-size:10px;color:var(--sec);}
+.sp-active .sp-name{color:var(--gold);}
+/* WEEKLY */
+.weekly-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.wi{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;}
+.wi .wn{font-size:18px;font-weight:700;color:var(--gold);margin-bottom:3px;}
+.wi .wen{font-size:10px;color:var(--gold);font-weight:600;margin-bottom:2px;}
+.wi .wt{font-size:13px;font-weight:700;color:var(--blue);margin-bottom:4px;}
+.wi .wd{font-size:11px;color:var(--sec);line-height:1.5;}
+/* PB */
+.pb-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.pb-card{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;}
+.pb-card .pbn{font-size:10px;font-weight:700;margin-bottom:3px;}
+.pb-card .pbt{font-size:13px;font-weight:700;color:var(--blue);margin-bottom:2px;}
+.pb-card .pbs{font-size:11px;color:var(--sec);}
+/* CANVAS TABLE */
+.canvas-table{width:100%;border-collapse:collapse;font-size:11px;}
+.canvas-table th{padding:9px 7px;text-align:center;font-weight:700;}
+.canvas-table td{padding:10px 8px;text-align:center;border:1px solid var(--border);font-size:10px;color:var(--sec);}
+.canvas-table .rh{font-weight:700;font-size:11px;padding:9px 7px;cursor:pointer;}
+.canvas-table .rh:hover{filter:brightness(.9);}
+/* CERT */
+.cert-levels{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.cert-level{display:flex;align-items:center;gap:12px;border-radius:10px;padding:12px 16px;border:2px solid transparent;}
+.cl-badge{font-size:22px;flex-shrink:0;} .cl-pct{font-size:15px;font-weight:700;min-width:80px;} .cl-t{font-size:13px;font-weight:700;margin-bottom:2px;} .cl-d{font-size:11px;opacity:.85;line-height:1.5;}
+/* CONTACT */
+.contact-hero{background:var(--blue);border-radius:16px;padding:28px 24px;text-align:center;margin-bottom:20px;border-bottom:3px solid var(--gold);}
+.contact-item{display:flex;align-items:center;gap:14px;background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:10px;}
+.ci-icon{font-size:22px;flex-shrink:0;} .ci-label{font-size:11px;color:var(--sec);margin-bottom:2px;} .ci-val{font-size:15px;font-weight:700;color:var(--blue);}
+/* FOOTER */
+.site-footer{background:var(--blue);color:var(--blue-l);text-align:center;padding:14px 20px;font-size:11px;border-top:3px solid var(--gold);margin-top:20px;}
+.site-footer strong{color:var(--gold);}
+@media(max-width:500px){
+  .menu-grid{grid-template-columns:1fr;}
+  .axes-grid{grid-template-columns:1fr 1fr;}
+  .pb-grid{grid-template-columns:1fr;}
+  .weekly-grid{grid-template-columns:1fr;}
+  .pain-grid{grid-template-columns:1fr;}
+  .pillars{grid-template-columns:1fr;}
+  .cmp-row{grid-template-columns:1fr;}
+  .steps-progress{grid-template-columns:1fr 1fr;}
+}
+
+.info-row{display:flex;align-items:flex-start;gap:12px;background:var(--bg);border-radius:10px;padding:12px 14px;margin-bottom:8px;}
+.ir-icon{font-size:20px;min-width:28px;text-align:center;}
+.ir-title{font-size:13px;font-weight:700;color:var(--blue);margin-bottom:2px;}
+.ir-desc{font-size:12px;color:var(--sec);}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div><div class="tl">النموذج الذهبي</div><div class="ts">دليل المستخدم الكامل</div></div>
+  <button class="back-btn" id="backBtn" onclick="goBack()" style="display:none;">رجوع ←</button>
+</div>
+
+<div class="page active" id="page-home">
+  <div class="intro-slide active" id="is1">
+    <div class="slide-light"><div class="wrap">
+      <div style="text-align:center;margin-bottom:24px;">
+        <div style="display:inline-block;background:var(--gold-l);color:var(--gold);font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;margin-bottom:12px;">المشكلة</div>
+        <h2 style="font-size:26px;font-weight:700;color:var(--blue);margin-bottom:8px;">هل تعاني من هذا؟</h2>
+        <p style="font-size:14px;color:var(--sec);line-height:1.7;">معظم المؤسسين يعانون من نفس المشكلة — وهي ليست نقص الفكرة</p>
+      </div>
+      <div class="pain-grid">
+        <div class="pain-card"><div class="pain-icon">🔥</div><div class="pain-t">أنت داخل كل شيء</div><div class="pain-d">المؤسسة تعمل بك لا بدونك — وهذا خطر حقيقي</div></div>
+        <div class="pain-card"><div class="pain-icon">🌀</div><div class="pain-t">اجتماعات بلا قرارات</div><div class="pain-d">كل أسبوع نفس النقاشات — ولا أحد يعرف من المسؤول</div></div>
+        <div class="pain-card"><div class="pain-icon">📉</div><div class="pain-t">تنفيذ بلا قياس</div><div class="pain-d">تعمل كثيراً لكن لا تعرف إن كنت تتقدم فعلاً</div></div>
+        <div class="pain-card"><div class="pain-icon">⚡</div><div class="pain-t">النمو يكسر النظام</div><div class="pain-d">كلما كبرت المؤسسة كلما زادت الفوضى بدل النظام</div></div>
+      </div>
+      <div class="root-box">السبب الجذري واحد — <strong>غياب نظام تشغيل داخلي واضح وقابل للقياس</strong></div>
+    </div></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--white);border-top:2px solid var(--border);margin-top:24px;">
+    <button onclick="introGo(-1)" disabled style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;opacity:0.3;cursor:default;">السابق ›</button>
+    <div style="display:flex;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--gold)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span></div>
+    <button onclick="introGo(1)" style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">‹ التالي</button>
+  </div>
+  </div>
+  <div class="intro-slide" id="is2">
+    <div class="slide-dark"><div class="wrap">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="display:inline-block;background:var(--gold);color:var(--blue);font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;margin-bottom:12px;">الحل</div>
+        <h2 style="font-size:26px;font-weight:700;color:var(--white);margin-bottom:8px;">ما هو نظام تشغيل ريادة الأعمال؟</h2>
+      </div>
+      <div class="big-q">"مثلما يحتاج هاتفك نظام تشغيل ليعمل بكفاءة — مؤسستك تحتاج نظاماً يربط الرؤية بالتنفيذ اليومي"</div>
+      <div class="pillars">
+        <div class="pillar"><div class="pi">🗺️</div><div class="pt">الرؤية</div><div class="ps">أين أنت وإلى أين تذهب</div></div>
+        <div class="pillar"><div class="pi">⚙️</div><div class="pt">التنفيذ</div><div class="ps">كيف تصل فعلياً</div></div>
+        <div class="pillar"><div class="pi">📊</div><div class="pt">القياس</div><div class="ps">هل تتقدم أم تتراجع</div></div>
+      </div>
+      <p style="font-size:13px;color:var(--blue-l);line-height:1.8;text-align:center;">النظام لا يُلهمك — يُشغّلك. يحوّل الأفكار إلى مهام، والمهام إلى نتائج،<br>والنتائج إلى <strong style="color:var(--white);">مؤسسة تعمل بدونك</strong></p>
+    </div></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(255,255,255,0.1);border-top:2px solid rgba(255,255,255,0.2);margin-top:24px;">
+    <button onclick="introGo(-1)" style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">السابق ›</button>
+    <div style="display:flex;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--gold)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span></div>
+    <button onclick="introGo(1)" style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">‹ التالي</button>
+  </div>
+  </div>
+  <div class="intro-slide" id="is3">
+    <div class="slide-light"><div class="wrap">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="display:inline-block;background:var(--gold-l);color:var(--gold);font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;margin-bottom:12px;">الأدوات</div>
+        <h2 style="font-size:24px;font-weight:700;color:var(--blue);margin-bottom:8px;">3 أدوات — نظام واحد متكامل</h2>
+      </div>
+      <div style="background:var(--blue);border-radius:14px;padding:18px;margin-bottom:14px;">
+        <h3 style="color:var(--gold);font-size:14px;font-weight:700;text-align:center;margin-bottom:14px;">العلاقة الصحيحة بين الأدوات</h3>
+        <div class="rel-item"><div class="ri-tag">🗺️ CANVAS</div><div class="ri-t">خريطة الطريق الكاملة</div><div class="ri-d">تراه فقط — لا تعمل فيه. في النهاية تقارنه بالـ Working Sheet لترى ما تحقق.</div></div>
+        <div class="rel-arrow">↓</div>
+        <div class="rel-item r3"><div class="ri-tag" style="color:#AFA9EC;">📖 PLAYBOOK</div><div class="ri-t">يشرح ماذا تفعل وكيف</div><div class="ri-d">يوضح ماذا يجب عمله وكيفية عمله والمسؤوليات — ثم تُسجّل كل شيء في الـ Working Sheet.</div></div>
+        <div class="rel-arrow">↓</div>
+        <div class="rel-item r2"><div class="ri-tag" style="color:#9FE1CB;">📋 WORKING SHEET</div><div class="ri-t">كل العمل الفعلي هنا</div><div class="ri-d">كل ما تُنجزه من خلال الـ Playbook يُسجَّل هنا. ثم تقارنه بالـ Canvas.</div></div>
+      </div>
+      <div style="background:var(--gold-l);border:1.5px solid var(--gold-m);border-radius:10px;padding:12px;text-align:center;font-size:13px;color:var(--blue);font-weight:600;">Canvas ← تريك ما ستعمل عليه &nbsp;|&nbsp; Playbook ← يشرح كيف &nbsp;|&nbsp; Working Sheet ← تسجّل كل ما تُنجزه</div>
+    </div></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--white);border-top:2px solid var(--border);margin-top:24px;">
+    <button onclick="introGo(-1)" style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">السابق ›</button>
+    <div style="display:flex;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--gold)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span></div>
+    <button onclick="introGo(1)" style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">‹ التالي</button>
+  </div>
+  </div>
+  <div class="intro-slide" id="is4">
+    <div class="slide-dark"><div class="wrap">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="display:inline-block;background:var(--gold);color:var(--blue);font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;margin-bottom:12px;">كيف يعمل</div>
+        <h2 style="font-size:24px;font-weight:700;color:var(--white);margin-bottom:8px;">دورة متكاملة — لا تتوقف</h2>
+      </div>
+      <div class="flow-item"><div class="fn">١</div><div><div class="fb-t">📖 Playbook — افتح الورقة</div><div class="fb-d">اقرأ Workflow: من يبدأ؟ من المسؤول؟ ما النتيجة المتوقعة؟ — ثم أدخل البيانات في حقول INPUT</div></div></div>
+      <div class="flow-item"><div class="fn">٢</div><div><div class="fb-t">📋 Working Sheet — اعمل وسجّل</div><div class="fb-d">5 أهداف لكل ورقة تُنشأ تلقائياً — غيّر الحالة: ⏳ جاري → ✅ مكتمل — تحقق من معيار الإنجاز قبل ✅</div></div></div>
+      <div class="flow-item"><div class="fn">٣</div><div><div class="fb-t">📅 متابعة أسبوعية — سجّل ما أنجزت</div><div class="fb-d">في نهاية الأسبوع: ماذا فعلنا؟ المعوق؟ الأسبوع القادم؟ — تُملأ تلقائياً من جلساتك</div></div></div>
+      <div class="flow-item"><div class="fn">٤</div><div><div class="fb-t">📊 تقرير الأداء الأسبوعي — ارفع وأرسل</div><div class="fb-d">يُعبَّأ تلقائياً من جلسات الأسبوع — راجعه وأرسله للمؤسس — يظهر في يوم محدد فقط</div></div></div>
+      <div class="flow-item"><div class="fn">٥</div><div><div class="fb-t">🏆 مراجعة المؤسس — توجيهات تتحول لمهام</div><div class="fb-d">المؤسس يراجع التقرير → يكتب توجيهاته → يضغط ⚡ "تحويل لمهام" → تظهر في Working Sheet تلقائياً</div></div></div>
+      <div class="flow-item gb"><div class="fn soft">↺</div><div><div class="fb-t" style="color:var(--gold);">المقارنة — Canvas vs Working Sheet</div><div class="fb-d">قارن ما حققته بالخريطة الأصلية — يكشف التقدم الحقيقي والفجوات</div></div></div>
+      <div class="cmp-row">
+        <div class="cmp-bad"><div class="cmp-lbl" style="color:var(--red);">❌ بدل هذا</div><div class="cmp-txt" style="color:var(--red);">قرارات بالحدس والانطباع</div></div>
+        <div class="cmp-good"><div class="cmp-lbl" style="color:var(--green);">✅ ستحصل على</div><div class="cmp-txt" style="color:var(--green);">قرارات مبنية على بيانات حقيقية</div></div>
+      </div>
+    </div></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(255,255,255,0.1);border-top:2px solid rgba(255,255,255,0.2);margin-top:24px;">
+    <button onclick="introGo(-1)" style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">السابق ›</button>
+    <div style="display:flex;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--gold)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span></div>
+    <button onclick="introGo(1)" style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">‹ التالي</button>
+  </div>
+  </div>
+  <div class="intro-slide" id="is5">
+    <div class="slide-light"><div class="wrap">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="display:inline-block;background:var(--gold-l);color:var(--gold);font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;margin-bottom:12px;">الأدوار</div>
+        <h2 style="font-size:24px;font-weight:700;color:var(--blue);margin-bottom:8px;">كل شخص يعرف دوره بالضبط</h2>
+      </div>
+      <div class="role-row"><div class="rbadge rb1">أنت / المؤسس</div><div class="role-text">تحدد الاتجاه عبر الـ Canvas — تتخذ القرارات الكبيرة — <span>تمتلك نتائج التحول، لا تديرها بالتفاصيل</span></div></div>
+      <div class="role-row"><div class="rbadge rb2">فريق القيادة</div><div class="role-text">يدير الـ Working Sheet — يقود التنفيذ الفعلي — <span>يتابع الأداء ويرفع تقريراً أسبوعياً</span></div></div>
+      <div class="role-row"><div class="rbadge rb3">الفرق التشغيلية</div><div class="role-text">تنفذ المهام المحددة — ترفع التقارير — <span>تساهم في تحسين النظام باستمرار</span></div></div>
+      <div class="ins-box" style="margin-top:16px;">✦ بعد الحصول على أول شهادة — <strong>المؤسس يُطوّر النظام بنفسه</strong><br>نحن نبقى للتدقيق والتجديد والتطوير فقط</div>
+    </div></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--white);border-top:2px solid var(--border);margin-top:24px;">
+    <button onclick="introGo(-1)" style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">السابق ›</button>
+    <div style="display:flex;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--gold)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--border)"></span></div>
+    <button onclick="introGo(1)" style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">‹ التالي</button>
+  </div>
+  </div>
+  <div class="intro-slide" id="is6">
+    <div class="slide-dark"><div class="wrap">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="display:inline-block;background:var(--gold);color:var(--blue);font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;margin-bottom:12px;">الشهادة</div>
+        <h2 style="font-size:24px;font-weight:700;color:var(--white);margin-bottom:8px;">نظام الاعتماد والشهادة</h2>
+        <p style="font-size:13px;color:var(--blue-l);margin-bottom:20px;">ليست شهادة على الجدار — بل دليل حي على أن مؤسستك تعمل بنظام</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.07);border-radius:14px;padding:16px;margin-bottom:16px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;"><div style="width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--blue);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">١</div><div style="color:var(--white);font-size:13px;"><strong style="color:var(--gold);">24 أسبوع</strong> تطبيق — جلسة أسبوعية 60-90 دقيقة</div></div>
+          <div style="display:flex;align-items:center;gap:10px;"><div style="width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--blue);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">٢</div><div style="color:var(--white);font-size:13px;"><strong style="color:var(--gold);">تدقيق مباشر</strong> بعد الأسبوع 24 ← شهادة فورية بحسب النتائج</div></div>
+          <div style="display:flex;align-items:center;gap:10px;"><div style="width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--blue);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">٣</div><div style="color:var(--white);font-size:13px;"><strong style="color:var(--gold);">صلاحية 12 شهراً</strong> — تجديد سنوي بتدقيق حقيقي</div></div>
+        </div>
+      </div>
+      <div class="cert-row-mini" style="background:#FFF8DC;border-color:#B8860B;margin-bottom:6px;"><div class="crm-badge">🥇</div><div class="crm-pct" style="color:#B8860B;">85–100%</div><div><div class="crm-t" style="color:#7A5800;">مستوى التميز</div><div class="crm-en" style="color:#7A5800;">Excellence Level</div></div></div>
+      <div class="cert-row-mini" style="background:#F0F0F0;border-color:#888;margin-bottom:6px;"><div class="crm-badge">🥈</div><div class="crm-pct" style="color:#555;">70–84%</div><div><div class="crm-t" style="color:#333;">المستوى المتقدم</div><div class="crm-en" style="color:#555;">Advanced Level</div></div></div>
+      <div class="cert-row-mini" style="background:#FDF0E0;border-color:#CD7F32;margin-bottom:16px;"><div class="crm-badge">🥉</div><div class="crm-pct" style="color:#CD7F32;">55–69%</div><div><div class="crm-t" style="color:#8B4513;">المستوى الأساسي</div><div class="crm-en" style="color:#8B4513;">Foundation Level</div></div></div>
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:center;">
+        <button class="btn-gold" onclick="showManual()">فتح الدليل الكامل ←</button>
+        <button style="background:rgba(255,255,255,0.15);border:2px solid var(--gold);color:var(--gold);margin-top:10px;padding:10px 28px;font-size:14px;font-weight:700;border-radius:10px;cursor:pointer;font-family:inherit;" onclick="showPage('page-contact','page-home')">📞 تواصل معنا</button>
+      </div>
+    </div></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(255,255,255,0.1);border-top:2px solid rgba(255,255,255,0.2);margin-top:24px;">
+    <button onclick="introGo(-1)" style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">السابق ›</button>
+    <div style="display:flex;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4)"></span><span style="width:8px;height:8px;border-radius:50%;background:var(--gold)"></span></div>
+    <button onclick="showPage('page-manual','page-home')" style="background:var(--gold);color:var(--blue);border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">فتح الدليل ←</button>
+  </div>
+  </div>
+</div>
+
+<!-- MANUAL -->
+
+<div class="page" id="page-manual"><div class="wrap">
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+  <div class="manual-hero">
+    <div style="color:var(--gold);font-size:11px;font-weight:700;margin-bottom:6px;">دليل المستخدم الكامل</div>
+    <div style="color:var(--white);font-size:20px;font-weight:700;margin-bottom:4px;">النموذج الذهبي</div>
+    <div style="color:var(--blue-l);font-size:12px;">اضغط على أي قسم للدخول إليه مباشرة</div>
+  </div>
+  <div class="sec-title">الأدوات الأساسية</div>
+  <div class="menu-grid">
+    <div class="menu-card" onclick="showPage('page-canvas','page-manual')"><div class="mc-icon">🗺️</div><div class="mc-title">الخارطة الاستراتيجية</div><div class="mc-desc">خريطة الطريق الكاملة — تراها ولا تعمل فيها</div><div class="mc-tag">CANVAS</div></div>
+    <div class="menu-card" onclick="showPage('page-ws','page-manual')"><div class="mc-icon">📋</div><div class="mc-title">ورقة العمل التشغيلية</div><div class="mc-desc">كل إنجاز حقيقي يُسجَّل هنا</div><div class="mc-tag">WORKING SHEET</div></div>
+    <div class="menu-card" onclick="showPage('page-playbook','page-manual')"><div class="mc-icon">📖</div><div class="mc-title">دليل التنفيذ</div><div class="mc-desc">24 ورقة — كيف تُنفّذ كل مرحلة بالضبط</div><div class="mc-tag">PLAYBOOK</div></div>
+    <div class="menu-card" onclick="showPage('page-weekly','page-manual')"><div class="mc-icon">📊</div><div class="mc-title">المتابعة الأسبوعية</div><div class="mc-desc">8 عناصر — جلسة واحدة تُحوّل الخطة إلى واقع</div><div class="mc-tag">WEEKLY</div></div>
+  </div>
+  <div style="margin-top:-10px;margin-bottom:20px;display:flex;justify-content:center;">
+    <div class="menu-card" onclick="showPage('page-change','page-manual')" style="max-width:380px;width:100%;"><div class="mc-icon">🔄</div><div class="mc-title">إدارة مقاومة التغيير</div><div class="mc-desc">تشخيص + سجل الحالات + الأدوات الخمس + قياس النتيجة</div><div class="mc-tag">CHANGE MANAGEMENT</div></div>
+  </div>
+  <div class="sec-title">ميزات جديدة</div>
+  <div class="menu-grid">
+    <div class="menu-card" onclick="showPage('page-tasks','page-manual')"><div class="mc-icon">📋</div><div class="mc-title">نظام المهام</div><div class="mc-desc">تكليف + متابعة + قبول ورفض + ملف المهام</div><div class="mc-tag">TASKS</div></div>
+    <div class="menu-card" onclick="showPage('page-km-guide','page-manual')"><div class="mc-icon">🗺️</div><div class="mc-title">مستودع المعرفة</div><div class="mc-desc">حفظ تلقائي + يدوي + تحكم في الوصول</div><div class="mc-tag">KNOWLEDGE</div></div>
+  </div>
+  <div class="sec-title">المحاور الستة</div>
+  <div class="axes-grid">
+    <div class="axis-btn" onclick="showPage('page-axis1','page-manual')" style="background:var(--c1l);color:var(--c1);"><div class="ax-icon">👤</div><div class="ax-num">المحور الأول</div><div class="ax-title">المؤسس</div></div>
+    <div class="axis-btn" onclick="showPage('page-axis2','page-manual')" style="background:var(--c2l);color:var(--c2);"><div class="ax-icon">🎯</div><div class="ax-num">المحور الثاني</div><div class="ax-title">السوق</div></div>
+    <div class="axis-btn" onclick="showPage('page-axis3','page-manual')" style="background:var(--c3l);color:var(--c3);"><div class="ax-icon">💰</div><div class="ax-num">المحور الثالث</div><div class="ax-title">نموذج الأعمال</div></div>
+    <div class="axis-btn" onclick="showPage('page-axis4','page-manual')" style="background:var(--c4l);color:var(--c4);"><div class="ax-icon">🏛️</div><div class="ax-num">المحور الرابع</div><div class="ax-title">المؤسسة</div></div>
+    <div class="axis-btn" onclick="showPage('page-axis5','page-manual')" style="background:var(--c5l);color:var(--c5);"><div class="ax-icon">📈</div><div class="ax-num">المحور الخامس</div><div class="ax-title">التوسع</div></div>
+    <div class="axis-btn" onclick="showPage('page-axis6','page-manual')" style="background:var(--c6l);color:var(--c6);"><div class="ax-icon">🌟</div><div class="ax-num">المحور السادس</div><div class="ax-title">الإرث</div></div>
+  </div>
+  <div class="sec-title">الاعتماد والتواصل</div>
+  <div class="menu-grid">
+    <div class="menu-card" onclick="showPage('page-cert','page-manual')"><div class="mc-icon">🏆</div><div class="mc-title">نظام الشهادة</div><div class="mc-desc">5 مستويات — دورة كاملة — التجديد السنوي</div><div class="mc-tag">CERTIFICATE</div></div>
+    <div class="menu-card" onclick="showPage('page-faq','page-manual')"><div class="mc-icon">❓</div><div class="mc-title">أسئلة شائعة</div><div class="mc-desc">كل ما تحتاج معرفته للعمل باستقلالية</div><div class="mc-tag">FAQ</div></div>
+  </div>
+  <div class="nav-links" id="nl-manual"></div>
+</div></div>
+
+<!-- CONTACT -->
+
+<div class="page" id="page-canvas"><div class="wrap">
+  <div class="breadcrumb" id="bc-canvas"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--blue);border-right-color:var(--gold);">
+    <div class="ph-tag">🗺️ CANVAS</div><h2>الخارطة الاستراتيجية</h2>
+    <p>خريطة الطريق الكاملة — تراها فقط ولا تعمل فيها</p>
+  </div>
+  <div class="hl">"المربع الفارغ = منطقة عمياء في مؤسستك"</div>
+  <div class="card"><div class="card-title">🎯 ما هو الـ Canvas؟</div>
+    <p>لا تعمل فيه — تراه فقط. كل العمل يذهب للـ Working Sheet. في النهاية تقارن ما أنجزته بالـ Canvas لترى التقدم الحقيقي.</p>
+    <div style="background:var(--blue);border-radius:10px;padding:14px;margin-top:10px;font-size:13px;color:var(--white);line-height:2.1;">
+      🗺️ <strong style="color:var(--gold);">Canvas</strong> ← يريك ما ستعمل عليه<br>
+      📖 <strong style="color:#AFA9EC;">Playbook</strong> ← يشرح كيف تعمل<br>
+      📋 <strong style="color:#9FE1CB;">Working Sheet</strong> ← تُسجّل كل ما أنجزته<br>
+      🔄 <strong style="color:var(--gold-m);">المقارنة</strong> ← Working Sheet vs Canvas = الفجوات الحقيقية
+    </div>
+  </div>
+  <div class="card"><div class="card-title">📐 شكل الـ Canvas — 24 مربعاً</div>
+    <div style="overflow-x:auto;">
+    <table class="canvas-table" style="min-width:460px;">
+      <thead><tr>
+        <th style="background:var(--blue);color:var(--white);">المحور</th>
+        <th style="background:var(--gold);color:var(--blue);">التشخيص</th>
+        <th style="background:var(--gold);color:var(--blue);">التصميم</th>
+        <th style="background:var(--gold);color:var(--blue);">التنفيذ</th>
+        <th style="background:var(--gold);color:var(--blue);">القياس</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="rh" style="background:var(--c1l);color:var(--c1);cursor:pointer;" onclick="showPage('page-axis1','page-canvas')">👤 المؤسس</td><td style="background:var(--c1l);">وضوح الرؤية</td><td style="background:var(--c1l);">الوعي الذاتي</td><td style="background:var(--c1l);">الانضباط</td><td style="background:var(--c1l);">الطاقة</td></tr>
+        <tr><td class="rh" style="background:var(--c2l);color:var(--c2);cursor:pointer;" onclick="showPage('page-axis2','page-canvas')">🎯 السوق</td><td style="background:var(--c2l);">فهم العميل</td><td style="background:var(--c2l);">حجم الفرصة</td><td style="background:var(--c2l);">المنافسة</td><td style="background:var(--c2l);">التحقق</td></tr>
+        <tr><td class="rh" style="background:var(--c3l);color:var(--c3);cursor:pointer;" onclick="showPage('page-axis3','page-canvas')">💰 نموذج الأعمال</td><td style="background:var(--c3l);">وضوح الإيراد</td><td style="background:var(--c3l);">التسعير</td><td style="background:var(--c3l);">التكاليف</td><td style="background:var(--c3l);">صحة النموذج</td></tr>
+        <tr><td class="rh" style="background:var(--c4l);color:var(--c4);cursor:pointer;" onclick="showPage('page-axis4','page-canvas')">🏛️ المؤسسة</td><td style="background:var(--c4l);">وضوح الأدوار</td><td style="background:var(--c4l);">العمليات</td><td style="background:var(--c4l);">إدارة الأداء</td><td style="background:var(--c4l);">الاستقرار</td></tr>
+        <tr><td class="rh" style="background:var(--c5l);color:var(--c5);cursor:pointer;" onclick="showPage('page-axis5','page-canvas')">📈 التوسع</td><td style="background:var(--c5l);">الجاهزية</td><td style="background:var(--c5l);">الاستراتيجية</td><td style="background:var(--c5l);">التطبيق</td><td style="background:var(--c5l);">صحة النمو</td></tr>
+        <tr><td class="rh" style="background:var(--c6l);color:var(--c6);cursor:pointer;" onclick="showPage('page-axis6','page-canvas')">🌟 الإرث</td><td style="background:var(--c6l);">الاستقلالية</td><td style="background:var(--c6l);">نقل المعرفة</td><td style="background:var(--c6l);">الاستدامة</td><td style="background:var(--c6l);">قياس الأثر</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="warn"><strong>⚠️ مهم</strong>الـ Canvas لا تعمل فيه — تراه فقط. كل العمل الفعلي يذهب للـ Working Sheet.</div>
+  <div class="nav-links" id="nl-canvas"></div>
+</div></div>
+
+<!-- WORKING SHEET -->
+
+<div class="page" id="page-ws"><div class="wrap">
+  <div class="breadcrumb" id="bc-ws"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--c2);border-right-color:#9FE1CB;">
+    <div class="ph-tag">📋 WORKING SHEET</div><h2>ورقة العمل التشغيلية</h2>
+    <p>هنا يُسجَّل كل إنجاز حقيقي — هو ميدان العمل الفعلي للنظام</p>
+  </div>
+  <div class="hl">"كل ما تُنجزه من خلال الـ Playbook يُسجَّل هنا — ثم تقارنه بالـ Canvas"</div>
+  <div class="card"><div class="card-title">📊 محتوى كل مربع</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="background:var(--c1l);border-radius:8px;padding:10px 14px;display:flex;gap:10px;align-items:center;"><span style="font-size:18px;">📊</span><div><div style="font-size:13px;font-weight:700;color:var(--c1);">بيانات فعلية</div><div style="font-size:12px;color:var(--sec);">أرقام وحقائق تصف الوضع الحالي بدقة</div></div></div>
+      <div style="background:var(--c2l);border-radius:8px;padding:10px 14px;display:flex;gap:10px;align-items:center;"><span style="font-size:18px;">👤</span><div><div style="font-size:13px;font-weight:700;color:var(--c2);">المسؤول المحدد</div><div style="font-size:12px;color:var(--sec);">اسم شخص واحد — لا غموض ولا تداخل</div></div></div>
+      <div style="background:var(--c3l);border-radius:8px;padding:10px 14px;display:flex;gap:10px;align-items:center;"><span style="font-size:18px;">📈</span><div><div style="font-size:13px;font-weight:700;color:var(--c3);">مؤشر الأداء KPI</div><div style="font-size:12px;color:var(--sec);">رقم هدف واضح + موعد تحقيق + نتيجة فعلية</div></div></div>
+      <div style="background:var(--c4l);border-radius:8px;padding:10px 14px;display:flex;gap:10px;align-items:center;"><span style="font-size:18px;">✅</span><div><div style="font-size:13px;font-weight:700;color:var(--c4);">خطوات التنفيذ</div><div style="font-size:12px;color:var(--sec);">ما الذي سيُفعل؟ متى؟ وكيف بالضبط؟</div></div></div>
+    </div>
+  </div>
+  <div class="card"><div class="card-title">📋 قواعد الاستخدام</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px 12px;background:var(--bg);border-radius:8px;border:1px solid var(--border);"><span style="font-size:16px;flex-shrink:0;">1️⃣</span><div style="font-size:13px;color:var(--text);"><strong>مصدر العمل الوحيد</strong> — كل الأنشطة تُدار منه.</div></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px 12px;background:var(--bg);border-radius:8px;border:1px solid var(--border);"><span style="font-size:16px;flex-shrink:0;">2️⃣</span><div style="font-size:13px;color:var(--text);"><strong>الفريق يمتلكه</strong> — يملأه ويُحدّثه. المؤسس يراجع ويتخذ قرارات الحسم.</div></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px 12px;background:var(--bg);border-radius:8px;border:1px solid var(--border);"><span style="font-size:16px;flex-shrink:0;">3️⃣</span><div style="font-size:13px;color:var(--text);"><strong>كل قرار له KPI</strong> — ما لا يُقاس لا يُدار.</div></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px 12px;background:var(--bg);border-radius:8px;border:1px solid var(--border);"><span style="font-size:16px;flex-shrink:0;">4️⃣</span><div style="font-size:13px;color:var(--text);"><strong>تحديث فوري</strong> — أي تغيير يُعكس فوراً بلا تأجيل.</div></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:10px 12px;background:var(--bg);border-radius:8px;border:1px solid var(--border);"><span style="font-size:16px;flex-shrink:0;">5️⃣</span><div style="font-size:13px;color:var(--text);"><strong>تغيير الاتجاه؟ ارجع للـ Canvas أولاً</strong> — لا تعدّل المسار من داخل ورقة العمل.</div></div>
+    </div>
+  </div>
+  <div class="warn"><strong>⚠️ قاعدة حرجة</strong>أي عنصر لم يُحدَّث منذ أكثر من 3 أشهر = أداة متوقفة لا تعكس الواقع.</div>
+  <div class="nav-links" id="nl-ws"></div>
+</div></div>
+
+<!-- PLAYBOOK -->
+
+<div class="page" id="page-playbook"><div class="wrap">
+  <div class="breadcrumb" id="bc-playbook"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--c5);border-right-color:#AFA9EC;">
+    <div class="ph-tag">📖 PLAYBOOK</div><h2>دليل التنفيذ — 24 ورقة</h2>
+    <p>يشرح ماذا تفعل وكيف — ثم تُسجّل كل شيء في الـ Working Sheet</p>
+  </div>
+  <div class="card"><div class="card-title">📄 محتوى كل ورقة من الـ 24</div>
+    <div class="weekly-grid">
+      <div class="wi"><div class="wt">ماذا يعني؟</div><div class="wd">شرح المفهوم بوضوح</div></div>
+      <div class="wi"><div class="wt">أسئلة التطبيق</div><div class="wd">أسئلة تساعدك على فهم وضعك</div></div>
+      <div class="wi"><div class="wt">كيف أُطبّق؟</div><div class="wd">خطوات عملية واضحة</div></div>
+      <div class="wi"><div class="wt">كيف أقيس؟</div><div class="wd">مؤشرات الأداء KPIs</div></div>
+      <div class="wi"><div class="wt">رؤية قيادية</div><div class="wd">Insight من الخبرة الحقيقية</div></div>
+      <div class="wi"><div class="wt">أخطاء شائعة</div><div class="wd">ما يجب تجنبه تماماً</div></div>
+      <div class="wi"><div class="wt">معيار النجاح</div><div class="wd">كيف تعرف أنك أنجزت</div></div>
+      <div class="wi"><div class="wt">إدارة التغيير</div><div class="wd">كيف تتعامل مع المقاومة</div></div>
+    </div>
+  </div>
+  <div class="card"><div class="card-title">🗂️ الـ 24 ورقة كاملة</div>
+    <div class="pb-grid">
+      <div class="pb-card" style="border-right:3px solid var(--c1);"><div class="pbn" style="color:var(--c1);">١.١</div><div class="pbt">المؤسس — التشخيص</div><div class="pbs">وضوح الرؤية الشخصية</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c1);"><div class="pbn" style="color:var(--c1);">١.٢</div><div class="pbt">المؤسس — التصميم</div><div class="pbs">الوعي الذاتي ونقاط القوة</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c1);"><div class="pbn" style="color:var(--c1);">١.٣</div><div class="pbt">المؤسس — التنفيذ</div><div class="pbs">الانضباط والنظام اليومي</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c1);"><div class="pbn" style="color:var(--c1);">١.٤</div><div class="pbt">المؤسس — القياس</div><div class="pbs">إدارة الطاقة والاستمرارية</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c2);"><div class="pbn" style="color:var(--c2);">٢.١</div><div class="pbt">السوق — التشخيص</div><div class="pbs">فهم العميل الحقيقي</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c2);"><div class="pbn" style="color:var(--c2);">٢.٢</div><div class="pbt">السوق — التصميم</div><div class="pbs">حجم الفرصة والمنافسة</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c2);"><div class="pbn" style="color:var(--c2);">٢.٣</div><div class="pbt">السوق — التنفيذ</div><div class="pbs">تحليل المنافسين</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c2);"><div class="pbn" style="color:var(--c2);">٢.٤</div><div class="pbt">السوق — القياس</div><div class="pbs">التحقق من الطلب الحقيقي</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c3);"><div class="pbn" style="color:var(--c3);">٣.١</div><div class="pbt">نموذج الأعمال — التشخيص</div><div class="pbs">وضوح الإيراد ومصادره</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c3);"><div class="pbn" style="color:var(--c3);">٣.٢</div><div class="pbt">نموذج الأعمال — التصميم</div><div class="pbs">التسعير القائم على القيمة</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c3);"><div class="pbn" style="color:var(--c3);">٣.٣</div><div class="pbt">نموذج الأعمال — التنفيذ</div><div class="pbs">إدارة التكاليف والهدر</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c3);"><div class="pbn" style="color:var(--c3);">٣.٤</div><div class="pbt">نموذج الأعمال — القياس</div><div class="pbs">صحة النموذج والربحية</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c4);"><div class="pbn" style="color:var(--c4);">٤.١</div><div class="pbt">المؤسسة — التشخيص</div><div class="pbs">وضوح الأدوار والمسؤوليات</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c4);"><div class="pbn" style="color:var(--c4);">٤.٢</div><div class="pbt">المؤسسة — التصميم</div><div class="pbs">توثيق العمليات SOPs</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c4);"><div class="pbn" style="color:var(--c4);">٤.٣</div><div class="pbt">المؤسسة — التنفيذ</div><div class="pbs">إدارة الأداء والقياس</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c4);"><div class="pbn" style="color:var(--c4);">٤.٤</div><div class="pbt">المؤسسة — القياس</div><div class="pbs">الاستقرار التشغيلي</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c5);"><div class="pbn" style="color:var(--c5);">٥.١</div><div class="pbt">التوسع — التشخيص</div><div class="pbs">جاهزية النمو</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c5);"><div class="pbn" style="color:var(--c5);">٥.٢</div><div class="pbt">التوسع — التصميم</div><div class="pbs">استراتيجية التوسع</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c5);"><div class="pbn" style="color:var(--c5);">٥.٣</div><div class="pbt">التوسع — التنفيذ</div><div class="pbs">تطبيق النمو المنضبط</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c5);"><div class="pbn" style="color:var(--c5);">٥.٤</div><div class="pbt">التوسع — القياس</div><div class="pbs">صحة النمو واستدامته</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c6);"><div class="pbn" style="color:var(--c6);">٦.١</div><div class="pbt">الإرث — التشخيص</div><div class="pbs">الاستقلالية عن المؤسس</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c6);"><div class="pbn" style="color:var(--c6);">٦.٢</div><div class="pbt">الإرث — التصميم</div><div class="pbs">نقل المعرفة والتوثيق</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c6);"><div class="pbn" style="color:var(--c6);">٦.٣</div><div class="pbt">الإرث — التنفيذ</div><div class="pbs">استدامة الكيان</div></div>
+      <div class="pb-card" style="border-right:3px solid var(--c6);"><div class="pbn" style="color:var(--c6);">٦.٤</div><div class="pbt">الإرث — القياس</div><div class="pbs">قياس الأثر والإرث</div></div>
+    </div>
+  </div>
+  <div class="tip"><strong>💡 كيف تستخدم الـ Playbook؟</strong>افتح فقط الورقة المتعلقة بالمرحلة التي تعمل عليها الآن.</div>
+  <div class="nav-links" id="nl-playbook"></div>
+</div></div>
+
+<!-- WEEKLY -->
+
+<div class="page" id="page-weekly"><div class="wrap">
+  <div class="breadcrumb" id="bc-weekly"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--blue);border-right-color:var(--gold-m);">
+    <div class="ph-tag">📊 WEEKLY EXECUTION SHEET</div><h2>المتابعة الأسبوعية</h2>
+    <p>محرك التنفيذ الفعلي — جلسة واحدة كل أسبوع</p>
+  </div>
+  <div class="hl">"الفرق بين مؤسسة تنمو ومؤسسة تدور في حلقات — هو هذه الجلسة الأسبوعية"</div>
+  <div class="card"><div class="card-title">8️⃣ العناصر الـ 8</div>
+    <div class="weekly-grid">
+      <div class="wi"><div class="wn">❶</div><div class="wen">Weekly Objective</div><div class="wt">الهدف الأسبوعي</div><div class="wd">ما النتيجة الأساسية المطلوبة هذا الأسبوع؟ جملة واحدة.</div></div>
+      <div class="wi"><div class="wn">❷</div><div class="wen">Top 3 Priorities</div><div class="wt">أعلى 3 أولويات</div><div class="wd">ثلاثة فقط — لا أكثر.</div></div>
+      <div class="wi"><div class="wn">❸</div><div class="wen">Execution Tasks</div><div class="wt">جدول المهام</div><div class="wd">المهمة + المسؤول + الموعد + الحالة.</div></div>
+      <div class="wi"><div class="wn">❹</div><div class="wen">KPIs</div><div class="wt">مؤشرات الأداء</div><div class="wd">3 أرقام — مستهدف + فعلي.</div></div>
+      <div class="wi"><div class="wn">❺</div><div class="wen">Blockers</div><div class="wt">المعوقات</div><div class="wd">ما الذي أوقف التقدم؟</div></div>
+      <div class="wi"><div class="wn">❻</div><div class="wen">Decisions Needed</div><div class="wt">القرارات المطلوبة</div><div class="wd">ما يحتاج قرار من القيادة.</div></div>
+      <div class="wi"><div class="wn">❼</div><div class="wen">Weekly Score / 30</div><div class="wt">التقييم الأسبوعي</div><div class="wd">التنفيذ (10) + الالتزام (10) + الجودة (10)</div></div>
+      <div class="wi"><div class="wn">❽</div><div class="wen">Next Week Plan</div><div class="wt">خطة الأسبوع القادم</div><div class="wd">ماذا سنُحسّن؟ ماذا سنوقف؟</div></div>
+    </div>
+  </div>
+  <div class="kpi-box"><div class="kpi-label">نظام التقييم / 30</div><div class="kpi-items">
+    <div class="kpi-item"><div class="ki-name">📊 التنفيذ</div><div class="ki-val">/ 10</div></div>
+    <div class="kpi-item"><div class="ki-name">✅ الالتزام</div><div class="ki-val">/ 10</div></div>
+    <div class="kpi-item"><div class="ki-name">⭐ الجودة</div><div class="ki-val">/ 10</div></div>
+  </div></div>
+  <div class="nav-links" id="nl-weekly"></div>
+</div></div>
+
+<!-- CHANGE MANAGEMENT -->
+
+<div class="page" id="page-change"><div class="wrap">
+  <div class="breadcrumb" id="bc-change"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--blue);border-right-color:#E74C3C;">
+    <div class="ph-tag">🔄 CHANGE MANAGEMENT</div><h2>إدارة التغيير</h2>
+    <p>كيف تتعامل مع مقاومة الفريق للنظام الجديد</p>
+  </div>
+  <div class="hl">"المقاومة ليست عدواناً — هي خوف من المجهول. مهمتك تحويل الخوف إلى ثقة"</div>
+  <div class="card"><div class="card-title">🔍 لماذا يقاوم الناس التغيير؟</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;">
+      <div style="background:var(--red-l);border-radius:8px;padding:10px 14px;border-right:3px solid var(--red);"><div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:3px;">الخوف من الفشل</div><div style="font-size:12px;color:var(--sec);">"النظام سيكشف ضعف أدائي"</div></div>
+      <div style="background:var(--red-l);border-radius:8px;padding:10px 14px;border-right:3px solid var(--red);"><div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:3px;">الخوف من فقدان السيطرة</div><div style="font-size:12px;color:var(--sec);">"لا مجال للتهرب بعد الآن"</div></div>
+      <div style="background:var(--red-l);border-radius:8px;padding:10px 14px;border-right:3px solid var(--red);"><div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:3px;">الإرهاق من التغيير</div><div style="font-size:12px;color:var(--sec);">"جربنا أنظمة كثيرة — كلها فشلت"</div></div>
+      <div style="background:var(--red-l);border-radius:8px;padding:10px 14px;border-right:3px solid var(--red);"><div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:3px;">عدم فهم الغرض</div><div style="font-size:12px;color:var(--sec);">"لماذا نفعل هذا؟ ما الذي سيتغير؟"</div></div>
+    </div>
+  </div>
+  <div class="card"><div class="card-title">🛠️ أدوات التعامل مع المقاومة</div>
+    <div class="step-card" style="border-color:var(--green);"><div class="step-card-head" style="background:var(--green);"><div class="sc-num">١</div><div class="sc-label">اشرح الـ "لماذا" قبل الـ "ماذا"</div></div><div class="step-card-body"><p>الفريق لا يحتاج تعليمات — يحتاج معنى. اشرح كيف سيُفيده النظام شخصياً في عمله اليومي.</p></div></div>
+    <div class="step-card" style="border-color:var(--green);"><div class="step-card-head" style="background:var(--green);"><div class="sc-num">٢</div><div class="sc-label">أشركهم في البناء</div></div><div class="step-card-body"><p>اجعل الفريق يُشارك في ملء الـ Working Sheet من البداية. من يبني النظام يدافع عنه.</p></div></div>
+    <div class="step-card" style="border-color:var(--green);"><div class="step-card-head" style="background:var(--green);"><div class="sc-num">٣</div><div class="sc-label">احتفل بالانتصارات الصغيرة</div></div><div class="step-card-body"><p>أول مهمة تُنجز في موعدها — أول KPI يتحقق. هذه اللحظات هي وقود الاستمرار.</p></div></div>
+    <div class="step-card" style="border-color:var(--green);"><div class="step-card-head" style="background:var(--green);"><div class="sc-num">٤</div><div class="sc-label">تعامل مع المقاومة علناً</div></div><div class="step-card-body"><p>إذا لاحظت مقاومة — ناقشها في الجلسة الأسبوعية. الصمت يُكبّر المشكلة. الحوار يُصغّرها.</p></div></div>
+    <div class="step-card" style="border-color:var(--green);"><div class="step-card-head" style="background:var(--green);"><div class="sc-num">٥</div><div class="sc-label">كن نموذجاً — لا مراقباً</div></div><div class="step-card-body"><p>المؤسس الذي يطالب بالنظام ولا يلتزم به هو أكبر سبب للمقاومة.</p></div></div>
+  </div>
+  <div class="kpi-box"><div class="kpi-label">مؤشرات نجاح إدارة التغيير</div><div class="kpi-items">
+    <div class="kpi-item"><div class="ki-name">الفريق يملأ الـ Working Sheet بدون تذكير</div><div class="ki-val">الأسبوع 8+</div></div>
+    <div class="kpi-item"><div class="ki-name">التقييم الأسبوعي يرتفع تدريجياً</div><div class="ki-val">15→20→25/30</div></div>
+    <div class="kpi-item"><div class="ki-name">الفريق يقترح تحسينات على النظام</div><div class="ki-val">الهدف الأسمى</div></div>
+  </div></div>
+  <div class="warn"><strong>⚠️ خط أحمر</strong>إذا استمرت مقاومة شخص بعد الأسبوع الثامن — المشكلة ليست في النظام. هي في الشخص أو في دوره.</div>
+  <div class="nav-links" id="nl-change"></div>
+</div></div>
+<!-- ═══ AXIS HELPER TEMPLATE (JS builds progress indicators) ═══ -->
+<!-- AXIS 1 -->
+
+<div class="page" id="page-axis1"><div class="wrap">
+  <div class="breadcrumb" id="bc-axis1"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--c1);border-right-color:#90B4D8;">
+    <div class="ph-tag">👤 المحور الأول — 1 من 6</div><h2>المؤسس</h2>
+    <p>وضوح الرؤية — الوعي الذاتي — الانضباط — إدارة الطاقة</p>
+  </div>
+  <div id="overall-axis1"></div>
+  <div class="hl">"ضبابية المؤسس = ضبابية كل شيء بعده — أنت أخطر شيء على مشروعك"</div>
+  <div id="steps-axis1"></div>
+
+  <div class="step-card" id="sc-axis1-1" style="border-color:var(--c1);">
+    <div class="step-card-head" style="background:var(--c1);"><div class="sc-num">١</div><div class="sc-label">التشخيص — وضوح الرؤية</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> قدرتك على فهم نفسك قبل مشروعك — لماذا تبدأ؟ ماذا تريد؟ إلى أين تتجه؟</p>
+      <p><strong>السؤال التشخيصي:</strong> هل تستطيع شرح ما تفعله ولماذا خلال 30 ثانية بدون تردد؟ إذا لا — فأنت لم تبدأ بعد.</p>
+      <p><strong>ما تبحث عنه:</strong> وضوح في الدافع الحقيقي + وضوح في الهدف + الفرق بين ما تريده أنت وما يحتاجه السوق.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis1-2" style="border-color:var(--c1);">
+    <div class="step-card-head" style="background:var(--c1);"><div class="sc-num">٢</div><div class="sc-label">التصميم — الوعي الذاتي</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> فهمك الحقيقي لنقاط قوتك وضعفك — بدون تجميل أو إنكار.</p>
+      <p><strong>ما تفعله:</strong> اكتب 3 نقاط قوة حقيقية — اكتب 3 نقاط ضعف واضحة — حدّد ما يجب تعويضه: تعلّم؟ تفويض؟ شريك؟</p>
+      <p><strong>النتيجة المطلوبة:</strong> خريطة شخصية واضحة تُحدد أين تُضيف قيمة فعلية وأين تمنع التقدم بدون أن تدري.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis1-3" style="border-color:var(--c1);">
+    <div class="step-card-head" style="background:var(--c1);"><div class="sc-num">٣</div><div class="sc-label">التنفيذ — الانضباط</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> العمل وفق نظام لا مزاج — الالتزام بالفعل حتى حين لا تشعر بالرغبة.</p>
+      <p><strong>ما تفعله:</strong> حدّد 3 مهام يومية أساسية لا تقل عنها — ضع حداً أقصى للوقت داخل التفاصيل التشغيلية — لا قرارات تُؤجَّل لأسبوع بدون سبب.</p>
+      <p><strong>الخطأ الشائع:</strong> الانضباط الحقيقي هو الاتساق — ليس الكمال.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis1-4" style="border-color:var(--c1);">
+    <div class="step-card-head" style="background:var(--c1);"><div class="sc-num">٤</div><div class="sc-label">القياس — إدارة الطاقة</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> قياس قدرتك على الاستمرار — المشروع لا ينهار فجأة بل يبدأ بانهيار طاقة مؤسسه.</p>
+      <div class="kpi-box" style="margin-top:10px;"><div class="kpi-label">مؤشرات الطاقة</div><div class="kpi-items">
+        <div class="kpi-item"><div class="ki-name">مستوى طاقتك نهاية اليوم</div><div class="ki-val">7/10+</div></div>
+        <div class="kpi-item"><div class="ki-name">أيام الإرهاق في الشهر</div><div class="ki-val">أقل من 3</div></div>
+        <div class="kpi-item"><div class="ki-name">الالتزام بالأولوية اليومية</div><div class="ki-val">5 من 7 أيام</div></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="nav-links" id="nl-axis1"></div>
+</div></div>
+
+<!-- AXIS 2 -->
+
+<div class="page" id="page-axis2"><div class="wrap">
+  <div class="breadcrumb" id="bc-axis2"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--c2);border-right-color:#9FE1CB;">
+    <div class="ph-tag">🎯 المحور الثاني — 2 من 6</div><h2>السوق</h2>
+    <p>فهم العميل الحقيقي — حجم الفرصة — المنافسة — التحقق من الطلب</p>
+  </div>
+  <div id="overall-axis2"></div>
+  <div class="hl">"السوق لا يهتم بفكرتك — يهتم بمشكلته"</div>
+  <div id="steps-axis2"></div>
+
+  <div class="step-card" id="sc-axis2-1" style="border-color:var(--c2);">
+    <div class="step-card-head" style="background:var(--c2);"><div class="sc-num">١</div><div class="sc-label">التشخيص — فهم العميل الحقيقي</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> معرفة من تبيع له فعلاً — لا من تظن أنك تبيع له.</p>
+      <p><strong>ما تفعله:</strong> حدّد شخصية عميل واحدة (لا "الجميع") — أجرِ 5 محادثات مع عملاء حقيقيين هذا الشهر — راقب سلوكهم لا كلامهم.</p>
+      <p><strong>السؤال الأهم:</strong> ما المشكلة التي يدفع عميلك مالاً الآن ليحلها؟ ليس ما يشكو منه — بل ما يدفع لحله.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis2-2" style="border-color:var(--c2);">
+    <div class="step-card-head" style="background:var(--c2);"><div class="sc-num">٢</div><div class="sc-label">التصميم — حجم الفرصة</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> التأكد من أن السوق كبير بما يكفي ليبرر البناء عليه.</p>
+      <p><strong>ما تفعله:</strong> احسب حجم السوق المستهدف برقم موثق — حدّد اتجاه السوق (نمو؟ تراجع؟ ثبات؟) — حلّل 3 منافسين رئيسيين.</p>
+      <p><strong>الخطأ الشائع:</strong> المبالغة بأخذ نسبة 1% من سوق عالمي. ابحث عن السوق القابل للاستهداف فعلاً.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis2-3" style="border-color:var(--c2);">
+    <div class="step-card-head" style="background:var(--c2);"><div class="sc-num">٣</div><div class="sc-label">التنفيذ — تحليل المنافسة</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> فهم المشهد التنافسي وتحديد موقعك الفعلي فيه.</p>
+      <p><strong>ما تفعله:</strong> جرّب خدمات المنافسين شخصياً — اقرأ تقييمات عملائهم — حدّد الفجوة التي لا يملؤها أحد غيرك.</p>
+      <p><strong>القاعدة:</strong> إذا لم تختلف — لن تُختار. الاختلاف قرار استراتيجي محدد وليس شعاراً.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis2-4" style="border-color:var(--c2);">
+    <div class="step-card-head" style="background:var(--c2);"><div class="sc-num">٤</div><div class="sc-label">القياس — التحقق من الطلب</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> التأكد من أن الطلب حقيقي وليس افتراضياً — أول عميل دفع = بداية الحقيقة.</p>
+      <div class="kpi-box" style="margin-top:10px;"><div class="kpi-label">مؤشرات التحقق</div><div class="kpi-items">
+        <div class="kpi-item"><div class="ki-name">عملاء دفعوا فعلاً (لا وعود)</div><div class="ki-val">10 أول</div></div>
+        <div class="kpi-item"><div class="ki-name">معدل الاحتفاظ بالعميل</div><div class="ki-val">70%+</div></div>
+        <div class="kpi-item"><div class="ki-name">إحالات من عملاء حاليين شهرياً</div><div class="ki-val">3+</div></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="nav-links" id="nl-axis2"></div>
+</div></div>
+
+<!-- AXIS 3 -->
+
+<div class="page" id="page-axis3"><div class="wrap">
+  <div class="breadcrumb" id="bc-axis3"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--c3);border-right-color:#F0D080;">
+    <div class="ph-tag">💰 المحور الثالث — 3 من 6</div><h2>نموذج الأعمال</h2>
+    <p>وضوح الإيراد — التسعير القائم على القيمة — إدارة التكاليف — صحة النموذج</p>
+  </div>
+  <div id="overall-axis3"></div>
+  <div class="hl">"الربح الغامض خطر صامت — كل $ له مصدر واضح"</div>
+  <div id="steps-axis3"></div>
+
+  <div class="step-card" id="sc-axis3-1" style="border-color:var(--c3);">
+    <div class="step-card-head" style="background:var(--c3);"><div class="sc-num">١</div><div class="sc-label">التشخيص — وضوح الإيراد</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> معرفة من أين يأتي المال بالضبط — وأي المصادر مستقر وأيها متذبذب.</p>
+      <p><strong>ما تفعله:</strong> وثّق كل مصادر الدخل بأرقام فعلية — احسب هامش الربح لكل منتج أو خدمة — حدّد أي الإيرادات متكرر وأيها موسمي.</p>
+      <p><strong>السؤال التشخيصي:</strong> إذا أوقفت البيع اليوم — كم شهراً تستطيع الاستمرار؟</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis3-2" style="border-color:var(--c3);">
+    <div class="step-card-head" style="background:var(--c3);"><div class="sc-num">٢</div><div class="sc-label">التصميم — التسعير القائم على القيمة</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> تسعير يعكس القيمة الحقيقية للعميل — لا التكلفة فقط ولا تقليد المنافسين.</p>
+      <p><strong>ما تفعله:</strong> احسب نقطة التعادل Break-even بدقة — جرّب أكثر من سعر في السوق — لا تُسعّر بالخوف.</p>
+      <p><strong>الخطأ الشائع:</strong> السعر المنخفض أحياناً يعني خسارة أسرع وعميلاً أقل ولاءً.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis3-3" style="border-color:var(--c3);">
+    <div class="step-card-head" style="background:var(--c3);"><div class="sc-num">٣</div><div class="sc-label">التنفيذ — إدارة التكاليف</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> الإنفاق بوعي لا بخوف — كل $ يُنفَق له مبرر واضح ونتيجة متوقعة.</p>
+      <p><strong>ما تفعله:</strong> صنّف التكاليف (ثابتة / متغيرة / استثمارية) — احذف الهدر الصامت (اشتراكات لا تُستخدم) — راقب نسبة التكاليف الثابتة من الإيراد شهرياً.</p>
+      <p><strong>القاعدة:</strong> المشكلة ليست في قلة المال — بل في سوء توزيعه.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis3-4" style="border-color:var(--c3);">
+    <div class="step-card-head" style="background:var(--c3);"><div class="sc-num">٤</div><div class="sc-label">القياس — صحة النموذج</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> التأكد من أن النموذج مربح ومستدام — النموذج الغامض ينجح ظاهرياً ويفشل داخلياً.</p>
+      <div class="kpi-box" style="margin-top:10px;"><div class="kpi-label">مؤشرات صحة النموذج</div><div class="kpi-items">
+        <div class="kpi-item"><div class="ki-name">الربح الشهري الصافي</div><div class="ki-val">موجب ومتنامٍ</div></div>
+        <div class="kpi-item"><div class="ki-name">التكاليف الثابتة من الإيراد</div><div class="ki-val">أقل من 40%</div></div>
+        <div class="kpi-item"><div class="ki-name">نسبة الإيراد المتكرر</div><div class="ki-val">30%+</div></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="nav-links" id="nl-axis3"></div>
+</div></div>
+
+<!-- AXIS 4 -->
+
+<div class="page" id="page-axis4"><div class="wrap">
+  <div class="breadcrumb" id="bc-axis4"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--c4);border-right-color:#E8A0A0;">
+    <div class="ph-tag">🏛️ المحور الرابع — 4 من 6</div><h2>المؤسسة</h2>
+    <p>وضوح الأدوار — توثيق العمليات — إدارة الأداء — الاستقرار التشغيلي</p>
+  </div>
+  <div id="overall-axis4"></div>
+  <div class="hl">"غموض الأدوار يولد فوضى صامتة — ما لا يُوثَّق لا يُدار"</div>
+  <div id="steps-axis4"></div>
+
+  <div class="step-card" id="sc-axis4-1" style="border-color:var(--c4);">
+    <div class="step-card-head" style="background:var(--c4);"><div class="sc-num">١</div><div class="sc-label">التشخيص — وضوح الأدوار</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> كل شخص في الفريق يعرف ماذا يفعل — وما لا يفعل — وإلى من يرفع.</p>
+      <p><strong>اختبار التشخيص:</strong> اسأل 3 أشخاص من الفريق عن مسؤولياتهم. إذا جاءت إجاباتهم متداخلة = مشكلة وضوح فورية.</p>
+      <p><strong>ما تبحث عنه:</strong> هل يوجد هيكل تنظيمي مكتوب؟ هل القرارات تمر عبر المؤسس لأن لا أحد يعرف صلاحياته؟</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis4-2" style="border-color:var(--c4);">
+    <div class="step-card-head" style="background:var(--c4);"><div class="sc-num">٢</div><div class="sc-label">التصميم — توثيق العمليات SOPs</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> بناء عمليات موثقة تجعل العمل قابلاً للتكرار بدون الحاجة للمؤسس في كل خطوة.</p>
+      <p><strong>ما تفعله:</strong> حدّد أهم 3 عمليات تتكرر يومياً — وثّق كل عملية بخطوات واضحة ومرتبة — اختبرها: هل يستطيع شخص جديد تنفيذها من الورقة فقط؟</p>
+      <p><strong>المعيار:</strong> أي شخص جديد يستطيع تنفيذ العمل بدون أن يسأل أحداً.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis4-3" style="border-color:var(--c4);">
+    <div class="step-card-head" style="background:var(--c4);"><div class="sc-num">٣</div><div class="sc-label">التنفيذ — إدارة الأداء</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> قياس أداء الفريق بأرقام حقيقية — ما لا يُقاس لا يُدار ولا يتحسن.</p>
+      <p><strong>ما تفعله:</strong> حدّد KPI واضحاً لكل شخص — راجع الأداء أسبوعياً في الجلسة — صحّح الانحراف بسرعة ولا تتركه يتراكم.</p>
+      <p><strong>الخطأ الشائع:</strong> الانتظار حتى نهاية الشهر. المشكلة الأسبوعية تُحَل في أسبوع — تُترك شهراً تصبح أزمة.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis4-4" style="border-color:var(--c4);">
+    <div class="step-card-head" style="background:var(--c4);"><div class="sc-num">٤</div><div class="sc-label">القياس — الاستقرار التشغيلي</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> قياس قدرة المؤسسة على العمل باستقرار وكفاءة مع مرور الوقت.</p>
+      <div class="kpi-box" style="margin-top:10px;"><div class="kpi-label">مؤشرات الاستقرار</div><div class="kpi-items">
+        <div class="kpi-item"><div class="ki-name">المؤسسة تعمل بدونك يوماً في الأسبوع</div><div class="ki-val">نعم</div></div>
+        <div class="kpi-item"><div class="ki-name">المهام المنجزة في موعدها</div><div class="ki-val">80%+</div></div>
+        <div class="kpi-item"><div class="ki-name">معدل دوران الموظفين سنوياً</div><div class="ki-val">أقل من 20%</div></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="nav-links" id="nl-axis4"></div>
+</div></div>
+
+<!-- AXIS 5 -->
+
+<div class="page" id="page-axis5"><div class="wrap">
+  <div class="breadcrumb" id="bc-axis5"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--c5);border-right-color:#AFA9EC;">
+    <div class="ph-tag">📈 المحور الخامس — 5 من 6</div><h2>التوسع</h2>
+    <p>جاهزية النمو — استراتيجية التوسع — التطبيق المنضبط — صحة النمو</p>
+  </div>
+  <div id="overall-axis5"></div>
+  <div class="hl">"التوسع قبل الجاهزية = تضخيم للمشاكل لا للنجاح"</div>
+  <div id="steps-axis5"></div>
+
+  <div class="step-card" id="sc-axis5-1" style="border-color:var(--c5);">
+    <div class="step-card-head" style="background:var(--c5);"><div class="sc-num">١</div><div class="sc-label">التشخيص — جاهزية التوسع</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> التأكد من أن ما بنيته قادر على الكبر دون أن ينهار.</p>
+      <p><strong>أسئلة التشخيص:</strong> هل النموذج مستقر ومربح 6 أشهر متواصلة؟ هل الفريق يعمل بدونك؟ هل العمليات موثقة؟</p>
+      <p><strong>إذا كانت الإجابة لا على أي سؤال</strong> — التوسع الآن سيُضاعف مشاكلك لا نجاحك.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis5-2" style="border-color:var(--c5);">
+    <div class="step-card-head" style="background:var(--c5);"><div class="sc-num">٢</div><div class="sc-label">التصميم — استراتيجية التوسع</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> بناء خطة توسع واضحة بأرقام محددة — لا تمنيات ولا عموميات.</p>
+      <p><strong>القاعدة الذهبية:</strong> قناة نمو واحدة — ركّز عليها بعمق — اختبرها وكرّرها — قبل الانتقال لقناة أخرى.</p>
+      <p><strong>ما تفعله:</strong> حدّد قناة التوسع (منتج جديد؟ سوق جغرافي؟ شريحة جديدة؟) — ضع هدفاً رقمياً خلال 90 يوماً.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis5-3" style="border-color:var(--c5);">
+    <div class="step-card-head" style="background:var(--c5);"><div class="sc-num">٣</div><div class="sc-label">التنفيذ — التوسع المنضبط</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> تنفيذ خطة التوسع خطوة بخطوة دون الإخلال بما هو قائم.</p>
+      <p><strong>ما تفعله:</strong> توسّع خطوة بخطوة — راقب الجودة في كل خطوة — لا تضغط الفريق الحالي على حساب العملاء الحاليين.</p>
+      <p><strong>الخطأ الشائع:</strong> إعادة توزيع نفس الموارد البشرية بدون توظيف أو تدريب — هذا يُهدد الأساس.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis5-4" style="border-color:var(--c5);">
+    <div class="step-card-head" style="background:var(--c5);"><div class="sc-num">٤</div><div class="sc-label">القياس — صحة النمو</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> التأكد من أن النمو حقيقي ومستدام — لا مجرد أرقام مبيعات تخفي ضعفاً داخلياً.</p>
+      <div class="kpi-box" style="margin-top:10px;"><div class="kpi-label">مؤشرات صحة النمو</div><div class="kpi-items">
+        <div class="kpi-item"><div class="ki-name">نمو الإيراد بعد التوسع</div><div class="ki-val">15%+</div></div>
+        <div class="kpi-item"><div class="ki-name">السوق الجديد يُدرّ دخلاً</div><div class="ki-val">خلال 90 يوماً</div></div>
+        <div class="kpi-item"><div class="ki-name">العمليات الأصلية لم تتأثر</div><div class="ki-val">مستقرة</div></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="nav-links" id="nl-axis5"></div>
+</div></div>
+
+<!-- AXIS 6 -->
+
+<div class="page" id="page-axis6"><div class="wrap">
+  <div class="breadcrumb" id="bc-axis6"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--c6);border-right-color:#C8A882;">
+    <div class="ph-tag">🌟 المحور السادس — 6 من 6</div><h2>الإرث</h2>
+    <p>الاستقلالية — نقل المعرفة — الاستدامة — قياس الأثر</p>
+  </div>
+  <div id="overall-axis6"></div>
+  <div class="hl">"إذا كنت محور كل شيء — أنت نقطة ضعف النظام"</div>
+  <div id="steps-axis6"></div>
+
+  <div class="step-card" id="sc-axis6-1" style="border-color:var(--c6);">
+    <div class="step-card-head" style="background:var(--c6);"><div class="sc-num">١</div><div class="sc-label">التشخيص — الاستقلالية</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> قياس مدى قدرة المشروع على العمل بدون وجودك اليومي.</p>
+      <p><strong>أسئلة التشخيص:</strong> هل يتوقف العمل بغيابك يوماً واحداً؟ هل القرارات اليومية تعتمد عليك شخصياً؟</p>
+      <p><strong>معيار الجاهزية:</strong> المؤسسة تعمل أسبوعاً كاملاً بدونك دون أن تتصل مرة واحدة.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis6-2" style="border-color:var(--c6);">
+    <div class="step-card-head" style="background:var(--c6);"><div class="sc-num">٢</div><div class="sc-label">التصميم — نقل المعرفة</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> توثيق المعرفة المؤسسية حتى لا تُفقد إذا غادر أي شخص — بما فيهم المؤسس.</p>
+      <p><strong>ما تفعله:</strong> وثّق القرارات الاستراتيجية وأسبابها — ابنِ قادة داخليين يتخذون قرارات مستقلة — اكتب رؤية المؤسسة لـ 5-10 سنوات.</p>
+      <div class="warn" style="margin-top:10px;"><strong>⚠️ الخطر الحقيقي</strong>إذا غادر أي شخص وستختفي معه معرفة حصرية — هذا خطر فوري.</div>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis6-3" style="border-color:var(--c6);">
+    <div class="step-card-head" style="background:var(--c6);"><div class="sc-num">٣</div><div class="sc-label">التنفيذ — بناء الاستدامة</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> بناء مؤسسة تستمر وتنمو بغض النظر عن وجودك في التفاصيل.</p>
+      <p><strong>ما تفعله:</strong> فوّض القرارات تدريجياً — ابدأ بالصغيرة ثم المتوسطة — لا تُراجع كل قرار فوّضته — احتفل بنجاحات فريقك المستقلة.</p>
+      <p><strong>الهدف النهائي:</strong> 70% من القرارات اليومية يتخذها الفريق بدون الرجوع إليك.</p>
+    </div>
+  </div>
+  <div class="step-card" id="sc-axis6-4" style="border-color:var(--c6);">
+    <div class="step-card-head" style="background:var(--c6);"><div class="sc-num">٤</div><div class="sc-label">القياس — قياس الأثر والإرث</div></div>
+    <div class="step-card-body">
+      <p><strong>الهدف:</strong> قياس مدى تحقق الاستقلالية والاستدامة بالأرقام لا بالشعور.</p>
+      <div class="kpi-box" style="margin-top:10px;"><div class="kpi-label">مؤشرات الإرث</div><div class="kpi-items">
+        <div class="kpi-item"><div class="ki-name">المؤسسة تعمل أسبوعاً كاملاً بدونك</div><div class="ki-val">نعم</div></div>
+        <div class="kpi-item"><div class="ki-name">القادة الداخليون يتخذون قرارات</div><div class="ki-val">70% من القرارات</div></div>
+        <div class="kpi-item"><div class="ki-name">قادة داخليون تم بناؤهم</div><div class="ki-val">3+</div></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="nav-links" id="nl-axis6"></div>
+</div></div>
+
+<!-- CERTIFICATE -->
+
+<div class="page" id="page-cert"><div class="wrap">
+  <div class="breadcrumb" id="bc-cert"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--blue);border-right-color:var(--gold);">
+    <div class="ph-tag">🏆 CERTIFICATE SYSTEM</div><h2>نظام الاعتماد والشهادة</h2>
+    <p>ليست شهادة على الجدار — بل دليل حي على أن مؤسستك تعمل بنظام</p>
+  </div>
+  <div class="card"><div class="card-title">📅 دورة الشهادة الكاملة</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;gap:14px;align-items:flex-start;background:var(--c1l);border-radius:10px;padding:12px 14px;border-right:4px solid var(--c1);"><div style="width:28px;height:28px;border-radius:50%;background:var(--c1);color:var(--white);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">١</div><div><div style="font-size:13px;font-weight:700;color:var(--c1);margin-bottom:3px;">التطبيق — 24 أسبوعاً</div><div style="font-size:12px;color:var(--sec);">جلسة أسبوعية 60-90 دقيقة. كل ما يُنجز يُسجَّل في الـ Working Sheet.</div></div></div>
+      <div style="display:flex;gap:14px;align-items:flex-start;background:var(--c2l);border-radius:10px;padding:12px 14px;border-right:4px solid var(--c2);"><div style="width:28px;height:28px;border-radius:50%;background:var(--c2);color:var(--white);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">٢</div><div><div style="font-size:13px;font-weight:700;color:var(--c2);margin-bottom:3px;">تدقيق مباشرة بعد الأسبوع 24</div><div style="font-size:12px;color:var(--sec);">تقييم ميداني فوري. يُقيَّم عمق التطبيق الفعلي لا الوعود.</div></div></div>
+      <div style="display:flex;gap:14px;align-items:flex-start;background:var(--gold-l);border-radius:10px;padding:12px 14px;border-right:4px solid var(--gold);"><div style="width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--blue);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">٣</div><div><div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:3px;">إصدار الشهادة فوراً</div><div style="font-size:12px;color:var(--sec);">تصدر بحسب مخرجات التدقيق. <strong>صلاحيتها 12 شهراً من تاريخ الإصدار.</strong></div></div></div>
+      <div style="display:flex;gap:14px;align-items:flex-start;background:var(--c3l);border-radius:10px;padding:12px 14px;border-right:4px solid var(--gold-m);"><div style="width:28px;height:28px;border-radius:50%;background:var(--gold-m);color:var(--blue);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">↺</div><div><div style="font-size:13px;font-weight:700;color:var(--c3);margin-bottom:3px;">زيارة متابعة — كل 3 أشهر (بطلب المؤسس)</div><div style="font-size:12px;color:var(--sec);">مجانية مرة واحدة فقط. الهدف دعم وتوجيه — ليست تدقيقاً.</div></div></div>
+      <div style="display:flex;gap:14px;align-items:flex-start;background:var(--green-l);border-radius:10px;padding:12px 14px;border-right:4px solid var(--green);"><div style="width:28px;height:28px;border-radius:50%;background:var(--green);color:var(--white);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">✓</div><div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:3px;">التجديد السنوي — عند انتهاء الـ 12 شهر</div><div style="font-size:12px;color:var(--sec);">مشروط بتدقيق جديد. الشهادة قد <strong>ترتفع أو تنخفض</strong> لأن المؤسسة تكبر وتكبر معها التحديات.</div></div></div>
+    </div>
+  </div>
+  <div class="card"><div class="card-title">📐 كيف تُحسب النسبة؟</div>
+    <div class="kpi-box"><div class="kpi-label">معادلة النسبة</div><div class="kpi-items">
+      <div class="kpi-item"><div class="ki-name">اكتمال المحاور الستة (10% لكل محور)</div><div class="ki-val">60%</div></div>
+      <div class="kpi-item"><div class="ki-name">جودة التطبيق (توثيق + استمرارية + استقلالية)</div><div class="ki-val">40%</div></div>
+    </div></div>
+  </div>
+  <div class="card"><div class="card-title">🎨 مستويات الشهادة الخمسة</div>
+    <div class="cert-levels">
+      <div class="cert-level" style="background:#FFF8DC;border-color:#B8860B;"><div class="cl-badge">🥇</div><div class="cl-pct" style="color:#B8860B;">85–100%</div><div><div class="cl-t" style="color:#7A5800;">مستوى التميز — Excellence</div><div class="cl-d" style="color:#7A5800;">النموذج مطبَّق بعمق وثبات استثنائي</div></div></div>
+      <div class="cert-level" style="background:#F0F0F0;border-color:#888;"><div class="cl-badge">🥈</div><div class="cl-pct" style="color:#555;">70–84%</div><div><div class="cl-t" style="color:#333;">المستوى المتقدم — Advanced</div><div class="cl-d" style="color:#555;">نضج حقيقي وتطبيق راسخ</div></div></div>
+      <div class="cert-level" style="background:#FDF0E0;border-color:#CD7F32;"><div class="cl-badge">🥉</div><div class="cl-pct" style="color:#CD7F32;">55–69%</div><div><div class="cl-t" style="color:#8B4513;">المستوى الأساسي — Foundation</div><div class="cl-d" style="color:#8B4513;">بداية حقيقية وأساس سليم</div></div></div>
+      <div class="cert-level" style="background:#EBF2FB;border-color:#2E5090;"><div class="cl-badge">📋</div><div class="cl-pct" style="color:#2E5090;">40–54%</div><div><div class="cl-t" style="color:#1F3864;">مشاركة فاعلة — Active Participation</div><div class="cl-d" style="color:#2E5090;">إقرار بالجهد والمشاركة</div></div></div>
+      <div class="cert-level" style="background:#F5F5F5;border-color:#999;"><div class="cl-badge">📄</div><div class="cl-pct" style="color:#666;">أقل من 40%</div><div><div class="cl-t" style="color:#444;">حضور وإتمام — Completion</div><div class="cl-d" style="color:#666;">نقطة انطلاق نحو المزيد</div></div></div>
+    </div>
+  </div>
+  <div class="tip"><strong>💡 بعد الحصول على أول شهادة</strong>المؤسس يُطوّر النظام بنفسه. نحن نبقى للتدقيق والتجديد فقط.</div>
+  <div class="nav-links" id="nl-cert"></div>
+</div></div>
+
+<!-- FAQ -->
+
+<div class="page" id="page-faq"><div class="wrap">
+  <div class="breadcrumb" id="bc-faq"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--blue);border-right-color:var(--gold);">
+    <div class="ph-tag">❓ FAQ</div><h2>أسئلة شائعة</h2>
+    <p>كل ما تحتاج معرفته للعمل باستقلالية تامة</p>
+  </div>
+  <!-- مفاهيم جديدة -->
+  <div class="card" style="border-right:4px solid var(--gold);">
+    <div class="card-title">🆕 مفاهيم مهمة في النظام</div>
+    <p><strong>Workflow:</strong> في كل ورقة تجد: من يبدأ؟ ما الخطوات؟ من المسؤول؟ ما النتيجة؟ — اقرأه أولاً دائماً.</p>
+    <p><strong>Done Criteria (معيار الإنجاز):</strong> لكل هدف من الـ 5 تعريف واضح "منجزة إذا / ليست منجزة إذا" — اضغط على الهدف لرؤيته.</p>
+    <p><strong>Task Lifecycle:</strong> كل مهمة تمر بمراحل: 🆕 جديدة → 🔄 جاري → ❓ تحتاج قرار → ✅ مكتملة → ⏸ مؤجلة.</p>
+    <p><strong>Weekly Feedback Loop:</strong> الفريق يعمل → يرفع تقريراً → المؤسس يراجع → يكتب توجيهات → تتحول لمهام تلقائياً.</p>
+    <p><strong>خصوصية محور المؤسس:</strong> محتوى المؤسس (Playbook + Canvas + Worksheet) مخفي افتراضياً — المؤسس يختار من يراه.</p>
+  </div>
+
+  <div class="card"><div class="card-title">❓ ما العلاقة بين Canvas و Playbook و Working Sheet؟</div>
+    <p><strong>Canvas</strong> = خارطة النظام كاملاً — للعرض والمتابعة — اضغط ⚡ لرؤية معيار الإنجاز.</p><p><strong>Playbook</strong> = يشرح ماذا تفعل + Workflow + حقول INPUT تملأها.</p><p><strong>Working Sheet</strong> = كل ما تُنجزه يُسجَّل هنا — المهام + الحالة + ماذا فعلنا + النتيجة.</p><p><strong>في النهاية:</strong> تقارن Working Sheet بالـ Canvas لترى التقدم والفجوات.</p></div>
+  <div class="card"><div class="card-title">❓ متى أستخدم الـ Playbook؟</div><p>افتح فقط الورقة المتعلقة بالمرحلة التي تعمل عليها الآن. لا تفتح كل الـ 24 ورقة دفعة واحدة.</p></div>
+  <div class="card"><div class="card-title">❓ كم مرة يجب تحديث الأدوات؟</div><p><strong>Working Sheet:</strong> فوري. <strong>Canvas:</strong> عند أي تغيير استراتيجي. <strong>القاعدة:</strong> أي أداة لم تُحدَّث منذ 3 أشهر = أداة متوقفة.</p></div>
+  <div class="card"><div class="card-title">❓ ماذا يحدث عند انتهاء الشهادة بعد 12 شهراً؟</div><p>تنتهي الشهادة ويبدأ مسار التجديد بتدقيق جديد. الشهادة قد ترتفع أو تنخفض لأن المؤسسة تكبر ومعها تتغير المتطلبات.</p></div>
+  <div class="card"><div class="card-title">❓ هل يمكن لأي شخص في الفريق استخدام هذا الدليل؟</div><p>نعم — هذا هو الهدف. الفريق يعمل بالنظام بشكل مستقل بعد الحصول على أول شهادة.</p></div>
+  <div class="card"><div class="card-title">❓ كيف أعرف أن الهدف "منجز فعلاً"؟</div>
+    <p>اضغط على الهدف في ورقة العمل — يظهر معيار الإنجاز مباشرة:</p>
+    <p>✅ <strong>منجزة إذا:</strong> شرط محدد وقابل للقياس</p>
+    <p>❌ <strong>ليست منجزة إذا:</strong> الأسباب الشائعة للتسرع في التقييم</p>
+    <p>لا تضغط ✅ إلا بعد التحقق من المعيار — هذا يحمي نسبة التقدم من أن تكون شكلية.</p>
+  </div>
+
+  <div class="card"><div class="card-title">❓ ماذا يحدث عندما أرفع تقرير الأداء الأسبوعي؟</div>
+    <p>١. التقرير يُعبَّأ تلقائياً من جلسات الأسبوع — راجعه وأكمل ما ينقص.</p>
+    <p>٢. المؤسس يتلقاه ويراجعه داخل النظام.</p>
+    <p>٣. المؤسس يكتب توجيهاته ويضغط ⚡ "تحويل لمهام".</p>
+    <p>٤. المهام تظهر تلقائياً في Working Sheet مصدرها "توجيه المؤسس".</p>
+    <p>هذه هي الدورة الكاملة — تتكرر كل أسبوع دون انقطاع.</p>
+  </div>
+
+  <div class="card"><div class="card-title">❓ لماذا لا أرى محور المؤسس أو التقارير؟</div>
+    <p>محور المؤسس والتقارير مخفيان افتراضياً — تصميم متعمد لحماية خصوصية المؤسس.</p>
+    <p>المؤسس يظهرهما من <strong>لوحة إعدادات الخصوصية</strong> في الصفحة الرئيسية — مستقل لكل دور.</p>
+  </div>
+
+  <div class="card"><div class="card-title">❓ ما فائدة لوحة الدور عند الدخول؟</div>
+    <p>🏆 <strong>المؤسس:</strong> التقارير المنتظرة + القرارات + المهام المتأخرة</p>
+    <p>👥 <strong>فريق القيادة:</strong> مهامهم الجارية + ما يحتاج قرار</p>
+    <p>⚙️ <strong>فريق التنفيذ:</strong> أولويته الأولى اليوم بارزة + مهامه فقط</p>
+  </div>
+
+  <div class="nav-links" id="nl-faq"></div>
+</div></div>
+
+<div class="site-footer">
+  <strong>© جميع الحقوق محفوظة — الدكتور أحمد العالي</strong><br>
+  مدرسة ريادة الأعمال بلا قناع — نظام تشغيل ريادة الأعمال — النموذج الذهبي
+</div>
+
+<script>
+// ═══ STATE ═══
+const axisProgress = {
+  axis1:[0,0,0,0], axis2:[0,0,0,0], axis3:[0,0,0,0],
+  axis4:[0,0,0,0], axis5:[0,0,0,0], axis6:[0,0,0,0]
+};
+const stepNames = ['التشخيص','التصميم','التنفيذ','القياس'];
+const axisColors = {
+  axis1:'#1F3864', axis2:'#0F6E56', axis3:'#7A5000',
+  axis4:'#922B21', axis5:'#3C3489', axis6:'#5D3A1A'
+};
+
+function svgRing(pct, color, r, stroke) {
+  const c = 2 * Math.PI * r;
+  const dash = (pct / 100) * c;
+  const bg = color + '30';
+  return `<svg width="${r*2+stroke*2}" height="${r*2+stroke*2}" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="${r+stroke}" cy="${r+stroke}" r="${r}" fill="none" stroke="${bg}" stroke-width="${stroke}"/>
+    <circle cx="${r+stroke}" cy="${r+stroke}" r="${r}" fill="none" stroke="${color}" stroke-width="${stroke}"
+      stroke-dasharray="${dash} ${c}" stroke-linecap="round" transform="rotate(-90 ${r+stroke} ${r+stroke})"/>
+  </svg>`;
+}
+
+function getOverall(key) {
+  const arr = axisProgress[key];
+  return Math.round(arr.reduce((a,b)=>a+b,0) / 4);
+}
+
+function buildOverall(axisKey) {
+  const color = axisColors[axisKey];
+  const pct = getOverall(axisKey);
+  const el = document.getElementById('overall-' + axisKey);
+  if (!el) return;
+  el.innerHTML = `
+    <div style="background:linear-gradient(135deg,${color} 0%,${color}CC 100%);border-radius:16px;padding:16px 20px;margin-bottom:18px;display:flex;align-items:center;gap:16px;box-shadow:0 4px 20px ${color}40;">
+      <div style="position:relative;width:76px;height:76px;flex-shrink:0;">
+        ${svgRing(pct, '#FFD700', 34, 6)}
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">
+          <div style="font-size:20px;font-weight:700;color:#FFD700;line-height:1;">${pct}%</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.7);margin-top:2px;">إجمالي</div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:4px;">مؤشر إنجاز المحور</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75);line-height:1.5;">متوسط نسب إنجاز الخطوات الأربع<br>اضغط على أي خطوة أدناه لتحديث نسبتها</div>
+      </div>
+    </div>`;
+}
+
+function buildSteps(axisKey) {
+  const color = axisColors[axisKey];
+  const arr = axisProgress[axisKey];
+  const el = document.getElementById('steps-' + axisKey);
+  if (!el) return;
+  el.innerHTML = `<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:18px;">` +
+    stepNames.map((name, i) => {
+      const pct = arr[i];
+      return `<div onclick="openStepProgress('${axisKey}',${i})"
+        style="background:#fff;border:1.5px solid ${pct>0?color:'#DDD'};border-radius:12px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .2s;box-shadow:${pct>0?'0 2px 8px '+color+'30':'none'};">
+        <div style="position:relative;width:52px;height:52px;margin:0 auto 8px;">
+          ${svgRing(pct, color, 22, 5)}
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">
+            <div style="font-size:13px;font-weight:700;color:${pct>0?color:'#AAA'};">${pct}%</div>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:${pct>0?color:'#777'};">${name}</div>
+        <div style="font-size:10px;color:#AAA;margin-top:3px;">اضغط للتحديث</div>
+      </div>`;
+    }).join('') + '</div>';
+}
+
+function openStepProgress(axisKey, stepIdx) {
+  const color = axisColors[axisKey];
+  const current = axisProgress[axisKey][stepIdx];
+  const modal = document.createElement('div');
+  modal.id = 'progress-modal';
+  modal.style.cssText = `position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;`;
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:24px;max-width:360px;width:100%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+      <div style="font-size:15px;font-weight:700;color:${color};margin-bottom:6px;">${stepNames[stepIdx]}</div>
+      <div style="font-size:12px;color:#777;margin-bottom:20px;">حدّد نسبة الإنجاز</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px;">
+        ${[0,25,50,75,90,100].map(v=>`
+          <button onclick="setProgress('${axisKey}',${stepIdx},${v})" 
+            style="padding:10px;border-radius:10px;border:2px solid ${v===current?color:'#DDD'};
+            background:${v===current?color:'#fff'};color:${v===current?'#fff':color};
+            font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;">
+            ${v}%
+          </button>`).join('')}
+      </div>
+      <button onclick="closeModal()" style="background:#F4F6FA;border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;color:#555;">إغلاق</button>
+    </div>`;
+  document.body.appendChild(modal);
+}
+
+function setProgress(axisKey, stepIdx, value) {
+  axisProgress[axisKey][stepIdx] = value;
+  closeModal();
+  buildOverall(axisKey);
+  buildSteps(axisKey);
+}
+
+function closeModal() {
+  const m = document.getElementById('progress-modal');
+  if (m) m.remove();
+}
+
+// ═══ HISTORY STACK ═══
+let history_stack = [];
+
+function showPage(id, from) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (from) history_stack.push(from);
+  document.getElementById('backBtn').className = (id==='page-home') ? 'back-btn' : 'back-btn show';
+  window.scrollTo({top:0,behavior:'smooth'});
+  buildNav(id);
+  buildBreadcrumb(id, from);
+  // build progress indicators for axis pages
+  const axisMatch = id.match(/page-axis(\d)/);
+  if (axisMatch) {
+    const key = 'axis' + axisMatch[1];
+    buildOverall(key);
+    buildSteps(key);
+  }
+}
+
+function goBack() {
+  if (history_stack.length > 0) {
+    const prev = history_stack.pop();
+    showPage(prev, null);
+  } else { goHome(); }
+}
+
+function showManual() { history_stack=[]; showPage('page-manual',null); }
+
+function goHome() {
+  history_stack=[];
+  showPage('page-home',null);
+  cur=0; introGoTo(0);
+}
+
+const pageLabels = {
+  'page-home':'الرئيسية','page-manual':'الدليل','page-canvas':'Canvas',
+  'page-ws':'Working Sheet','page-playbook':'Playbook','page-weekly':'المتابعة',
+  'page-change':'إدارة التغيير','page-axis1':'المؤسس','page-axis2':'السوق',
+  'page-axis3':'نموذج الأعمال','page-axis4':'المؤسسة','page-axis5':'التوسع',
+  'page-axis6':'الإرث','page-cert':'الشهادة','page-faq':'أسئلة شائعة','page-contact':'تواصل'
+};
+
+function buildBreadcrumb(id, from) {
+  const el = document.getElementById('bc-' + id.replace('page-',''));
+  if (!el) return;
+  let html = '';
+  if (from) html += `<span onclick="showPage('${from}',null)">${pageLabels[from]||from}</span> ←`;
+  html += ` <span style="color:var(--text);cursor:default;">${pageLabels[id]||id}</span>`;
+  el.innerHTML = html;
+}
+
+const pageNavs = {
+  'page-canvas':   [['page-ws','📋 ورقة العمل'],['page-playbook','📖 Playbook'],['page-manual','🏠 الدليل']],
+  'page-ws':       [['page-canvas','🗺️ Canvas'],['page-playbook','📖 Playbook'],['page-weekly','📊 المتابعة'],['page-manual','🏠 الدليل']],
+  'page-playbook': [['page-canvas','🗺️ Canvas'],['page-ws','📋 ورقة العمل'],['page-change','🔄 إدارة التغيير'],['page-manual','🏠 الدليل']],
+  'page-weekly':   [['page-ws','📋 ورقة العمل'],['page-change','🔄 إدارة التغيير'],['page-manual','🏠 الدليل']],
+  'page-change':   [['page-weekly','📊 المتابعة'],['page-playbook','📖 Playbook'],['page-manual','🏠 الدليل']],
+  'page-axis1':    [['page-axis2','المحور الثاني ←'],['page-canvas','🗺️ Canvas'],['page-manual','🏠 الدليل']],
+  'page-axis2':    [['page-axis1','← المحور الأول'],['page-axis3','المحور الثالث ←'],['page-manual','🏠 الدليل']],
+  'page-axis3':    [['page-axis2','← المحور الثاني'],['page-axis4','المحور الرابع ←'],['page-manual','🏠 الدليل']],
+  'page-axis4':    [['page-axis3','← المحور الثالث'],['page-axis5','المحور الخامس ←'],['page-manual','🏠 الدليل']],
+  'page-axis5':    [['page-axis4','← المحور الرابع'],['page-axis6','المحور السادس ←'],['page-manual','🏠 الدليل']],
+  'page-axis6':    [['page-axis5','← المحور الخامس'],['page-cert','🏆 الشهادة'],['page-manual','🏠 الدليل']],
+  'page-cert':     [['page-faq','❓ أسئلة شائعة'],['page-contact','📞 تواصل'],['page-manual','🏠 الدليل']],
+  'page-faq':      [['page-cert','🏆 الشهادة'],['page-contact','📞 تواصل'],['page-manual','🏠 الدليل']],
+  'page-contact':  [['page-manual','🏠 الدليل']]
+};
+
+function buildNav(id) {
+  const navId = 'nl-' + id.replace('page-','');
+  const el = document.getElementById(navId);
+  if (!el || !pageNavs[id]) return;
+  el.innerHTML = pageNavs[id].map(([target, label]) =>
+    `<button class="btn-ghost" onclick="showPage('${target}','${id}')">${label}</button>`
+  ).join('');
+}
+
+// ═══ INTRO ═══
+let cur = 0;
+const total = 6;
+const darkSlides = [1,3,5];
+const dotsEl = document.getElementById('iDots');
+for(let i=0;i<total;i++){
+  const d=document.createElement('div');
+  d.className='dot lt'+(i===0?' active':'');
+  d.onclick=()=>introGoTo(i);
+  dotsEl.appendChild(d);
+}
+
+function introGoTo(n){
+  document.getElementById('is'+(cur+1)).classList.remove('active');
+  cur=Math.max(0,Math.min(total-1,n));
+  document.getElementById('is'+(cur+1)).classList.add('active');
+  const dark=darkSlides.includes(cur);
+  const nav=document.getElementById('introNav');
+  nav.className='intro-nav '+(dark?'dn':'ln');
+  const iPrev=document.getElementById('iPrev');
+  iPrev.disabled=cur===0;
+  iPrev.className='inav-btn inav-prev'+(dark?' dk':'');
+  Array.from(dotsEl.children).forEach((d,i)=>{
+    d.className='dot '+(dark?'dk':'lt')+(i===cur?' active':'');
+  });
+  const iNext=document.getElementById('iNext');
+  if(cur===total-1){iNext.textContent='فتح الدليل ←';iNext.onclick=showManual;}
+  else{iNext.textContent='‹ التالي';iNext.onclick=()=>introGo(1);}
+}
+
+function introGo(d){introGoTo(cur+d);}
+
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('page-home').classList.contains('active')){
+    if(e.key==='ArrowLeft')introGo(1);
+    if(e.key==='ArrowRight')introGo(-1);
+  }
+  if(e.key==='Escape')goHome();
+});
+</script>
+
+<div class="page" id="page-contact"><div class="wrap">
+  <div class="breadcrumb" id="bc-contact"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="contact-hero">
+    <div style="font-size:40px;margin-bottom:12px;">👤</div>
+    <h2 style="color:var(--white);font-size:22px;font-weight:700;margin-bottom:6px;">الدكتور أحمد العالي</h2>
+    <p style="color:var(--blue-l);font-size:13px;line-height:1.7;">المؤسس والرئيس التنفيذي<br>مدرسة ريادة الأعمال بلا قناع — الفكرية<br>نظام تشغيل ريادة الأعمال — النموذج الذهبي</p>
+  </div>
+  <div class="contact-item"><div class="ci-icon">📱</div><div><div class="ci-label">هاتف / واتساب</div><div class="ci-val" style="direction:ltr;text-align:right;">97337797737</div></div></div>
+  <div class="contact-item"><div class="ci-icon">📧</div><div><div class="ci-label">البريد الإلكتروني</div><div class="ci-val" style="font-size:13px;direction:ltr;text-align:right;">drahmedalaali1@gmail.com</div></div></div>
+  <div class="contact-item"><div class="ci-icon">🇧🇭</div><div><div class="ci-label">الموقع</div><div class="ci-val">مملكة البحرين</div></div></div>
+  <div class="contact-item"><div class="ci-icon">💼</div><div><div class="ci-label">LinkedIn</div><div class="ci-val" style="font-size:12px;direction:ltr;text-align:right;">linkedin.com/in/drahmedalaali</div></div></div>
+  <div class="nav-links" id="nl-contact"></div>
+</div></div>
+<!-- CANVAS -->
+
+<div class="page" id="page-tasks"><div class="wrap">
+  <div class="breadcrumb" id="bc-tasks"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:var(--blue);border-right-color:var(--gold);">
+    <div class="ph-tag">📋 TASKS SYSTEM</div><h2>نظام المهام</h2>
+    <p>تكليف واضح — متابعة دقيقة — قبول ورفض موثق</p>
+  </div>
+  <div class="hl">"كل مهمة لها مسؤول واحد — وكل مسؤول يعرف بالضبط ماذا يُنجز"</div>
+  <div class="card"><div class="card-title">🔄 دورة حياة المهمة</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+      <div class="step-card" style="border-color:var(--blue);"><div class="step-card-head" style="background:var(--blue);"><div class="sc-num">١</div><div class="sc-label">التكليف 📤</div></div><div class="step-card-body"><p>المؤسس أو القيادة يفتحون ورقة العمل → يختارون اسم المكلَّف من القائمة المنسدلة في الجدول</p></div></div>
+      <div class="step-card" style="border-color:var(--gold);"><div class="step-card-head" style="background:var(--gold);"><div class="sc-num">٢</div><div class="sc-label">الإشعار 🔔</div></div><div class="step-card-body"><p>المكلَّف يستلم إشعار Popup عند دخوله النظام: "لديك مهام جديدة تنتظرك"</p></div></div>
+      <div class="step-card" style="border-color:var(--sec);"><div class="step-card-head" style="background:var(--sec);"><div class="sc-num">٣</div><div class="sc-label">التنفيذ وكتابة الإنجاز ✍️</div></div><div class="step-card-body"><p>المكلَّف يفتح المهمة → يكتب ما أنجزه بالتفصيل → يضغط "📤 تسليم"</p></div></div>
+      <div class="step-card" style="border-color:var(--green);"><div class="step-card-head" style="background:var(--green);"><div class="sc-num">٤</div><div class="sc-label">المراجعة والقبول ✅</div></div><div class="step-card-body"><p>المؤسس يرى الإنجاز في لوحته → يقرأ ما كُتب → يضغط ✅ قبول أو ❌ رفض مع ذكر السبب</p></div></div>
+      <div class="step-card" style="border-color:var(--red);"><div class="step-card-head" style="background:var(--red);"><div class="sc-num">٥</div><div class="sc-label">عند الرفض ❌</div></div><div class="step-card-body"><p>المكلَّف يستلم إشعار بالرفض وسببه → الهدف يُعاد فتحه تلقائياً في الجدول → يُعيد العمل ويُسلّم من جديد</p></div></div>
+    </div>
+  </div>
+  <div class="card"><div class="card-title">📁 ملف المهام — للمؤسس والAdmin</div>
+    <p style="font-size:13px;color:var(--sec);margin:8px 0 12px;">صفحة تجمع كل المهام في مكان واحد بدون بحث</p>
+    <div class="info-row"><div class="ir-icon">📤</div><div><div class="ir-title">المهام التي أرسلتها</div><div class="ir-desc">⏳ بانتظار الرد • ✅ مقبولة • ❌ مرفوضة • 📤 مُرسَلة</div></div></div>
+    <div class="info-row"><div class="ir-icon">📋</div><div><div class="ir-title">المهام المطلوبة مني</div><div class="ir-desc">جديدة • جارية • مكتملة • مرفوضة</div></div></div>
+  </div>
+  <div class="card"><div class="card-title">🔔 صفحة "مهامي" — لكل مستخدم</div>
+    <p style="font-size:13px;color:var(--sec);margin:8px 0 12px;">كل مستخدم يرى مهامه الخاصة فقط — لا مهام غيره</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:var(--blue-l);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;">🆕</div><div style="font-size:12px;font-weight:700;color:var(--blue);margin-top:4px;">جديدة</div></div>
+      <div style="background:var(--gold-l);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;">🔄</div><div style="font-size:12px;font-weight:700;color:var(--blue);margin-top:4px;">جارية</div></div>
+      <div style="background:var(--green-l);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;">✅</div><div style="font-size:12px;font-weight:700;color:var(--green);margin-top:4px;">مكتملة</div></div>
+      <div style="background:var(--red-l);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:22px;">❌</div><div style="font-size:12px;font-weight:700;color:var(--red);margin-top:4px;">مرفوضة</div></div>
+    </div>
+  </div>
+  <div class="nav-links" id="nl-tasks"></div>
+</div></div>
+
+<div class="page" id="page-km-guide"><div class="wrap">
+  <div class="breadcrumb" id="bc-km-guide"></div>
+  <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:16px;">← رجوع</button>
+
+  <div class="page-hero" style="background:linear-gradient(135deg,#1a3a2e,#0d2137);border-right-color:#4CAF50;">
+    <div class="ph-tag">🗺️ KNOWLEDGE MAP</div><h2>مستودع المعرفة</h2>
+    <p>كل ما تعلمته المؤسسة — محفوظ — منظم — متاح لمن يستحق</p>
+  </div>
+  <div class="hl">"المعرفة غير الموثقة = خسارة مؤجلة. كل معرفة في رأس شخص واحد = خطر مؤسسي"</div>
+  <div class="card"><div class="card-title">🤖 الحفظ التلقائي</div>
+    <p style="font-size:13px;color:var(--sec);margin:8px 0 12px;">النظام يحفظ تلقائياً دون أن تطلب:</p>
+    <div class="step-card" style="border-color:var(--green);"><div class="step-card-head" style="background:var(--green);"><div class="sc-num">✅</div><div class="sc-label">عند قبول إنجاز مهمة</div></div><div class="step-card-body"><p>ما كتبه المنفذ يُحفظ تلقائياً باسمه في المستودع — المعرفة تُنسب لمن اكتسبها لا لمن كلّف</p></div></div>
+    <div class="step-card" style="border-color:var(--gold);"><div class="step-card-head" style="background:var(--gold);"><div class="sc-num">⚠️</div><div class="sc-label">عند حل مقاومة</div></div><div class="step-card-body"><p>الإجراء الذي نجح في معالجة المقاومة يُحفظ تلقائياً كدرس مستفاد للشركة كلها</p></div></div>
+  </div>
+  <div class="card"><div class="card-title">✍️ الإضافة اليدوية</div>
+    <p style="font-size:13px;color:var(--sec);margin:8px 0 12px;">أي مستخدم يستطيع إضافة معرفة يدوياً:</p>
+    <div class="info-row"><div class="ir-icon">📝</div><div><div class="ir-title">عنوان المعرفة / الدرس</div><div class="ir-desc">ما الذي تعلمته؟</div></div></div>
+    <div class="info-row"><div class="ir-icon">📄</div><div><div class="ir-title">المحتوى والتفاصيل</div><div class="ir-desc">اشرح ما حدث وكيف تعاملت معه</div></div></div>
+    <div class="info-row"><div class="ir-icon">💡</div><div><div class="ir-title">التوصية</div><div class="ir-desc">ما تنصح به من سيواجه هذا لاحقاً؟</div></div></div>
+    <div class="info-row"><div class="ir-icon">🔒</div><div><div class="ir-title">من يرى هذه المعرفة؟</div><div class="ir-desc">الكل • القيادة فما فوق • المؤسس والAdmin فقط</div></div></div>
+  </div>
+  <div class="card"><div class="card-title">🔐 التحكم في الوصول والصلاحيات</div>
+    <div class="info-row"><div class="ir-icon">👥</div><div><div class="ir-title">الكل</div><div class="ir-desc">كل المستخدمين يرون هذه المعرفة</div></div></div>
+    <div class="info-row"><div class="ir-icon">👤</div><div><div class="ir-title">القيادة فما فوق</div><div class="ir-desc">المؤسس + Admin + القيادة</div></div></div>
+    <div class="info-row"><div class="ir-icon">🔒</div><div><div class="ir-title">المؤسس والAdmin فقط</div><div class="ir-desc">للمعرفة الحساسة والاستراتيجية</div></div></div>
+    <div class="ins-box">💡 المؤسس والAdmin يقبلون ✅ أو يرفضون ❌ أي معرفة — مع إمكانية الاستعادة ↩️ في أي وقت</div>
+  </div>
+  <div class="card"><div class="card-title">🔔 الإشعارات</div>
+    <p style="font-size:13px;color:var(--sec);">عند إضافة معرفة جديدة → يصل إشعار لكل من له صلاحية الوصول → زر 🗺️ المعرفة في الشريط العلوي يعرض عداداً بالمعارف الجديدة غير المقروءة</p>
+  </div>
+  <div class="nav-links" id="nl-km-guide"></div>
+</div></div>
+
+<script>
+// ═══ STATE ═══
+const axisProgress = {
+  axis1:[0,0,0,0], axis2:[0,0,0,0], axis3:[0,0,0,0],
+  axis4:[0,0,0,0], axis5:[0,0,0,0], axis6:[0,0,0,0]
+};
+const stepNames = ['التشخيص','التصميم','التنفيذ','القياس'];
+const axisColors = {
+  axis1:'#1F3864', axis2:'#0F6E56', axis3:'#7A5000',
+  axis4:'#922B21', axis5:'#3C3489', axis6:'#5D3A1A'
+};
+
+function svgRing(pct, color, r, stroke) {
+  const c = 2 * Math.PI * r;
+  const dash = (pct / 100) * c;
+  const bg = color + '30';
+  return `<svg width="${r*2+stroke*2}" height="${r*2+stroke*2}" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="${r+stroke}" cy="${r+stroke}" r="${r}" fill="none" stroke="${bg}" stroke-width="${stroke}"/>
+    <circle cx="${r+stroke}" cy="${r+stroke}" r="${r}" fill="none" stroke="${color}" stroke-width="${stroke}"
+      stroke-dasharray="${dash} ${c}" stroke-linecap="round" transform="rotate(-90 ${r+stroke} ${r+stroke})"/>
+  </svg>`;
+}
+
+function getOverall(key) {
+  const arr = axisProgress[key];
+  return Math.round(arr.reduce((a,b)=>a+b,0) / 4);
+}
+
+function buildOverall(axisKey) {
+  const color = axisColors[axisKey];
+  const pct = getOverall(axisKey);
+  const el = document.getElementById('overall-' + axisKey);
+  if (!el) return;
+  el.innerHTML = `
+    <div style="background:linear-gradient(135deg,${color} 0%,${color}CC 100%);border-radius:16px;padding:16px 20px;margin-bottom:18px;display:flex;align-items:center;gap:16px;box-shadow:0 4px 20px ${color}40;">
+      <div style="position:relative;width:76px;height:76px;flex-shrink:0;">
+        ${svgRing(pct, '#FFD700', 34, 6)}
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">
+          <div style="font-size:20px;font-weight:700;color:#FFD700;line-height:1;">${pct}%</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.7);margin-top:2px;">إجمالي</div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:15px;font-weight:700;color:#fff;margin-bottom:4px;">مؤشر إنجاز المحور</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75);line-height:1.5;">متوسط نسب إنجاز الخطوات الأربع<br>اضغط على أي خطوة أدناه لتحديث نسبتها</div>
+      </div>
+    </div>`;
+}
+
+function buildSteps(axisKey) {
+  const color = axisColors[axisKey];
+  const arr = axisProgress[axisKey];
+  const el = document.getElementById('steps-' + axisKey);
+  if (!el) return;
+  el.innerHTML = `<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:18px;">` +
+    stepNames.map((name, i) => {
+      const pct = arr[i];
+      return `<div onclick="openStepProgress('${axisKey}',${i})"
+        style="background:#fff;border:1.5px solid ${pct>0?color:'#DDD'};border-radius:12px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .2s;box-shadow:${pct>0?'0 2px 8px '+color+'30':'none'};">
+        <div style="position:relative;width:52px;height:52px;margin:0 auto 8px;">
+          ${svgRing(pct, color, 22, 5)}
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">
+            <div style="font-size:13px;font-weight:700;color:${pct>0?color:'#AAA'};">${pct}%</div>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:${pct>0?color:'#777'};">${name}</div>
+        <div style="font-size:10px;color:#AAA;margin-top:3px;">اضغط للتحديث</div>
+      </div>`;
+    }).join('') + '</div>';
+}
+
+function openStepProgress(axisKey, stepIdx) {
+  const color = axisColors[axisKey];
+  const current = axisProgress[axisKey][stepIdx];
+  const modal = document.createElement('div');
+  modal.id = 'progress-modal';
+  modal.style.cssText = `position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;`;
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:24px;max-width:360px;width:100%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+      <div style="font-size:15px;font-weight:700;color:${color};margin-bottom:6px;">${stepNames[stepIdx]}</div>
+      <div style="font-size:12px;color:#777;margin-bottom:20px;">حدّد نسبة الإنجاز</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px;">
+        ${[0,25,50,75,90,100].map(v=>`
+          <button onclick="setProgress('${axisKey}',${stepIdx},${v})" 
+            style="padding:10px;border-radius:10px;border:2px solid ${v===current?color:'#DDD'};
+            background:${v===current?color:'#fff'};color:${v===current?'#fff':color};
+            font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;">
+            ${v}%
+          </button>`).join('')}
+      </div>
+      <button onclick="closeModal()" style="background:#F4F6FA;border:none;padding:10px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;color:#555;">إغلاق</button>
+    </div>`;
+  document.body.appendChild(modal);
+}
+
+function setProgress(axisKey, stepIdx, value) {
+  axisProgress[axisKey][stepIdx] = value;
+  closeModal();
+  buildOverall(axisKey);
+  buildSteps(axisKey);
+}
+
+function closeModal() {
+  const m = document.getElementById('progress-modal');
+  if (m) m.remove();
+}
+
+// ═══ HISTORY STACK ═══
+let history_stack = [];
+
+function showPage(id, from) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (from) history_stack.push(from);
+  document.getElementById('backBtn').className = (id==='page-home') ? 'back-btn' : 'back-btn show';
+  window.scrollTo({top:0,behavior:'smooth'});
+  buildNav(id);
+  buildBreadcrumb(id, from);
+  // build progress indicators for axis pages
+  const axisMatch = id.match(/page-axis(\d)/);
+  if (axisMatch) {
+    const key = 'axis' + axisMatch[1];
+    buildOverall(key);
+    buildSteps(key);
+  }
+}
+
+function goBack() {
+  if (history_stack.length > 0) {
+    const prev = history_stack.pop();
+    showPage(prev, null);
+  } else { goHome(); }
+}
+
+function showManual() { history_stack=[]; showPage('page-manual',null); }
+
+function goHome() {
+  history_stack=[];
+  showPage('page-home',null);
+  cur=0; introGoTo(0);
+}
+
+const pageLabels = {
+  'page-home':'الرئيسية','page-manual':'الدليل','page-canvas':'Canvas',
+  'page-ws':'Working Sheet','page-playbook':'Playbook','page-weekly':'المتابعة',
+  'page-change':'إدارة التغيير','page-axis1':'المؤسس','page-axis2':'السوق',
+  'page-axis3':'نموذج الأعمال','page-axis4':'المؤسسة','page-axis5':'التوسع',
+  'page-axis6':'الإرث','page-cert':'الشهادة','page-faq':'أسئلة شائعة','page-contact':'تواصل',
+  'page-tasks':'نظام المهام','page-km-guide':'مستودع المعرفة'
+};
+
+function buildBreadcrumb(id, from) {
+  const el = document.getElementById('bc-' + id.replace('page-',''));
+  if (!el) return;
+  let html = '';
+  if (from) html += `<span onclick="showPage('${from}',null)">${pageLabels[from]||from}</span> ←`;
+  html += ` <span style="color:var(--text);cursor:default;">${pageLabels[id]||id}</span>`;
+  el.innerHTML = html;
+}
+
+const pageNavs = {
+  'page-canvas':   [['page-ws','📋 ورقة العمل'],['page-playbook','📖 Playbook'],['page-manual','🏠 الدليل']],
+  'page-manual':   [['page-canvas','🗺️ Canvas'],['page-ws','📋 ورقة العمل'],['page-contact','📞 تواصل']],
+  'page-tasks':    [['page-km-guide','🗺️ المعرفة'],['page-change','🔄 المقاومة'],['page-manual','🏠 الدليل']],
+  'page-km-guide': [['page-tasks','📋 المهام'],['page-change','🔄 المقاومة'],['page-manual','🏠 الدليل']],
+  'page-ws':       [['page-canvas','🗺️ Canvas'],['page-playbook','📖 Playbook'],['page-weekly','📊 المتابعة'],['page-manual','🏠 الدليل']],
+  'page-playbook': [['page-canvas','🗺️ Canvas'],['page-ws','📋 ورقة العمل'],['page-change','🔄 إدارة التغيير'],['page-manual','🏠 الدليل']],
+  'page-weekly':   [['page-ws','📋 ورقة العمل'],['page-change','🔄 إدارة التغيير'],['page-manual','🏠 الدليل']],
+  'page-change':   [['page-weekly','📊 المتابعة'],['page-playbook','📖 Playbook'],['page-manual','🏠 الدليل']],
+  'page-axis1':    [['page-axis2','المحور الثاني ←'],['page-canvas','🗺️ Canvas'],['page-manual','🏠 الدليل']],
+  'page-axis2':    [['page-axis1','← المحور الأول'],['page-axis3','المحور الثالث ←'],['page-manual','🏠 الدليل']],
+  'page-axis3':    [['page-axis2','← المحور الثاني'],['page-axis4','المحور الرابع ←'],['page-manual','🏠 الدليل']],
+  'page-axis4':    [['page-axis3','← المحور الثالث'],['page-axis5','المحور الخامس ←'],['page-manual','🏠 الدليل']],
+  'page-axis5':    [['page-axis4','← المحور الرابع'],['page-axis6','المحور السادس ←'],['page-manual','🏠 الدليل']],
+  'page-axis6':    [['page-axis5','← المحور الخامس'],['page-cert','🏆 الشهادة'],['page-manual','🏠 الدليل']],
+  'page-cert':     [['page-faq','❓ أسئلة شائعة'],['page-contact','📞 تواصل'],['page-manual','🏠 الدليل']],
+  'page-faq':      [['page-cert','🏆 الشهادة'],['page-contact','📞 تواصل'],['page-manual','🏠 الدليل']],
+  'page-contact':  [['page-manual','🏠 الدليل']]
+};
+
+function buildNav(id) {
+  const navId = 'nl-' + id.replace('page-','');
+  const el = document.getElementById(navId);
+  if (!el || !pageNavs[id]) return;
+  el.innerHTML = pageNavs[id].map(([target, label]) =>
+    `<button class="btn-ghost" onclick="showPage('${target}','${id}')">${label}</button>`
+  ).join('');
+}
+
+// ═══ INTRO ═══
+let cur = 0;
+const total = 6;
+const darkSlides = [1,3,5];
+const dotsEl = document.getElementById('iDots');
+for(let i=0;i<total;i++){
+  const d=document.createElement('div');
+  d.className='dot lt'+(i===0?' active':'');
+  d.onclick=()=>introGoTo(i);
+  dotsEl.appendChild(d);
+}
+
+function introGoTo(n){
+  document.getElementById('is'+(cur+1)).classList.remove('active');
+  cur=Math.max(0,Math.min(total-1,n));
+  document.getElementById('is'+(cur+1)).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function introGo(d){introGoTo(cur+d);}
+
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('page-home').classList.contains('active')){
+    if(e.key==='ArrowLeft')introGo(1);
+    if(e.key==='ArrowRight')introGo(-1);
+  }
+  if(e.key==='Escape')goHome();
+});
+</script>
+<a href="index.html" style="position:fixed;top:80px;left:20px;background:#DC2626;color:white;border-radius:12px;padding:10px 16px;font-size:0.75rem;font-weight:700;font-family:Tajawal,sans-serif;text-decoration:none;display:flex;align-items:center;gap:6px;box-shadow:0 4px 16px rgba(220,38,38,0.35);z-index:500;">🏠 الموقع الرئيسي</a><a href="school.html" style="position:fixed;top:130px;left:20px;background:#0F1F3D;color:#D4A843;border:1.5px solid #D4A843;border-radius:12px;padding:10px 16px;font-size:0.75rem;font-weight:700;font-family:Tajawal,sans-serif;text-decoration:none;display:flex;align-items:center;gap:6px;z-index:500;">🎓 المدرسة</a></body>
+</html>
